@@ -2,6 +2,15 @@
 
 Headless ecommerce micorservice build on top of nestjs 
 
+### Stack
+
+It has
+
+- GraphQL modules, DB using TypeORM as seen on https://docs.nestjs.com/
+- Cqrs partter https://microservices.io/patterns/data/cqrs.html
+- Keycloak authentication https://www.keycloak.org/
+- GRPC https://grpc.io/docs/what-is-grpc/introduction/
+
 # Dev
 
 Run docker compose
