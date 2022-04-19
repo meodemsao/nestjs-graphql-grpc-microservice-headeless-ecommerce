@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+package io.vg.srv.categoryStore;
+
+import 'common.proto';
+import 'google/protobuf/any.proto';
+import "google/protobuf/timestamp.proto";
+import 'google/protobuf/wrappers.proto';
+import 'google/protobuf/struct.proto';
+
+message CategoryStore {
+  // normal field
+  string id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+  google.protobuf.Timestamp deletedAt = 4;
+  google.protobuf.StringValue createdBy = 5;
+  google.protobuf.StringValue updatedBy = 6;
+  google.protobuf.StringValue deletedBy = 7;
+  // reserved field
+  string categoryId = 8;
+  string storeId = 9;
+}
+
+message CategoryStores {
+  repeated CategoryStore CategoryStores = 1;
+}
+
+message CategoryStoreEdge {
+  CategoryStores node = 1;
+  string cursor = 2;
+}
+
+message CategoryStoreConnection {
+  common.PageInfo pageInfo = 1;
+  int32 totalCount = 2;
+  repeated CategoryStoreEdge edges = 3;
+}
+
+message CategoryStoreInput {
+  string categoryId = 1;
+  string storeId = 2;
+}
+
+message CreateCategoryStoreInput {
+  CategoryStoreInput data = 1;
+}
+
+message CreateManyCategoryStoresInput {
+  repeated CategoryStoreInput categoryStores = 1;
+}
+
+message UpdateCategoryStoreInput {
+  string id = 1;
+  CategoryStoreInput data = 2;
+}
+
+message UpdateManyCategoryStoresInput {
+  google.protobuf.Any filter = 1;
+  CategoryStoreInput update = 2;
+}
+
+message DeleteManyCategoryStoresInput {
+  google.protobuf.Any filter = 1;
+}
+
+message NullableCategoryStore {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    CategoryStore data = 2;
+  }
+}

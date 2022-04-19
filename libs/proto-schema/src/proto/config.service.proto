@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package io.vg.srv.config;
+
+import 'common.proto';
+import 'configSetting.proto';
+
+service ConfigService {
+
+  // config setting
+  rpc configSetting(common.Id) returns (configSetting.NullableConfigSetting){}
+  rpc configSettings(common.Query) returns (configSetting.ConfigSettings){}
+  rpc configSettingsTotal(common.Query) returns (common.Count){}
+  rpc createConfigSetting (configSetting.CreateConfigSettingInput) returns (configSetting.ConfigSetting) {}
+  rpc createManyConfigSettings (configSetting.CreateManyConfigSettingsInput) returns (configSetting.ConfigSettings) {}
+  rpc updateConfigSetting (configSetting.UpdateConfigSettingInput) returns (configSetting.ConfigSetting) {}
+  rpc updateManyConfigSettings (configSetting.UpdateManyConfigSettingsInput) returns (configSetting.ConfigSettings) {}
+  rpc deleteConfigSetting (common.Id) returns (configSetting.ConfigSetting) {}
+  rpc deleteManyConfigSettings (configSetting.DeleteManyConfigSettingsInput) returns (common.DeleteManyResponse) {}
+
+}

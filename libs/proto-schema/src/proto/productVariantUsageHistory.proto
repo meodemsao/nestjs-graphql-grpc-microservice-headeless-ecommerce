@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+package io.vg.srv.productVariantUsageHistory;
+
+import 'common.proto';
+import 'google/protobuf/any.proto';
+import "google/protobuf/timestamp.proto";
+import 'google/protobuf/wrappers.proto';
+import 'google/protobuf/struct.proto';
+
+enum ProductVariantUsageHistoryScope {
+  Order = 0;
+  SyncData = 1;
+}
+
+message ProductVariantUsageHistory {
+  // normal field
+  string id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+  google.protobuf.Timestamp deletedAt = 4;
+  google.protobuf.StringValue createdBy = 5;
+  google.protobuf.StringValue updatedBy = 6;
+  google.protobuf.StringValue deletedBy = 7;
+  // reserved field
+  string productVariantId = 8;
+  string storeId = 9;
+  float changeQuantity = 10;
+  string reason  = 11;
+  string referenceId = 12;
+  ProductVariantUsageHistoryScope referenceScope = 13;
+}
+
+message ProductVariantUsageHistories {
+  repeated ProductVariantUsageHistory productVariantUsageHistories = 1;
+}
+
+message ProductVariantUsageHistoryEdge {
+  ProductVariantUsageHistories node = 1;
+  string cursor = 2;
+}
+
+message ProductVariantUsageHistoryConnection {
+  common.PageInfo pageInfo = 1;
+  int32 totalCount = 2;
+  repeated ProductVariantUsageHistoryEdge edges = 3;
+}
+
+message ProductVariantUsageHistoryInput {
+  string productVariantId = 1;
+  string storeId = 2;
+  float changeQuantity = 3;
+  string reason  = 4;
+  string referenceId = 5;
+  ProductVariantUsageHistoryScope referenceScope = 6;
+}
+
+message CreateProductVariantUsageHistoryInput {
+  ProductVariantUsageHistoryInput data = 1;
+}
+
+message CreateManyProductVariantUsageHistoriesInput {
+  repeated ProductVariantUsageHistoryInput productVariantUsageHistories = 1;
+}
+
+message UpdateProductVariantUsageHistoryInput {
+  string id = 1;
+  ProductVariantUsageHistoryInput data = 2;
+}
+
+message UpdateManyProductVariantUsageHistoriesInput {
+  google.protobuf.Any filter = 1;
+  ProductVariantUsageHistoryInput update = 2;
+}
+
+message DeleteManyProductVariantUsageHistoriesInput {
+  google.protobuf.Any filter = 1;
+}
+
+message NullableProductVariantUsageHistory {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    ProductVariantUsageHistory data = 2;
+  }
+}

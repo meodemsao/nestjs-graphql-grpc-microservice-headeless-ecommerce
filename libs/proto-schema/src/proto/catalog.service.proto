@@ -1,0 +1,332 @@
+syntax = "proto3";
+
+package io.vg.srv.catalog;
+
+import 'common.proto';
+import 'category.proto';
+import 'categoryLocation.proto';
+import 'categoryStore.proto';
+import 'collection.proto';
+import 'collectionLocation.proto';
+import 'collectionStore.proto';
+import 'manufacturer.proto';
+import 'manufacturerLocation.proto';
+import 'manufacturerStore.proto';
+import 'product.proto';
+import 'productImage.proto';
+import 'productAttribute.proto';
+import 'productCategory.proto';
+import 'productCollection.proto';
+import 'productLocation.proto';
+import 'productStore.proto';
+import 'attribute.proto';
+import 'attributeOption.proto';
+import 'template.proto';
+import 'importPriceHistory.proto';
+import 'productVariantPrice.proto';
+import 'productVariantUsageHistory.proto';
+import 'productVariantAvailability.proto';
+import 'productVariantAttribute.proto';
+import 'productVariant.proto';
+import 'metaTag.proto';
+import 'tag.proto';
+
+service CatalogService {
+  // category
+  rpc category(common.Id) returns (category.NullableCategory){}
+  rpc categories(common.Query) returns (category.Categories){}
+  rpc categoriesTotal(common.Query) returns (common.Count){}
+  rpc createCategory (category.CreateCategoryInput) returns (category.Category) {}
+  rpc createManyCategories (category.CreateManyCategoriesInput) returns (category.Categories) {}
+  rpc updateCategory (category.UpdateCategoryInput) returns (category.Category) {}
+  rpc updateManyCategories (category.UpdateManyCategoriesInput) returns (category.Categories) {}
+  rpc deleteCategory (common.Id) returns (category.Category) {}
+  rpc deleteManyCategories (category.DeleteManyCategoriesInput) returns (common.DeleteManyResponse) {}
+
+  // category location
+  rpc categoryLocation(common.Id) returns (categoryLocation.NullableCategoryLocation){}
+  rpc categoryLocations(common.Query) returns (categoryLocation.CategoryLocations){}
+  rpc categoryLocationsTotal(common.Query) returns (common.Count){}
+  rpc createCategoryLocation (categoryLocation.CreateCategoryLocationInput) returns (categoryLocation.CategoryLocation) {}
+  rpc createManyCategoryLocations (categoryLocation.CreateManyCategoryLocationsInput) returns (categoryLocation.CategoryLocations) {}
+  rpc updateCategoryLocation (categoryLocation.UpdateCategoryLocationInput) returns (categoryLocation.CategoryLocation) {}
+  rpc updateManyCategoryLocations (categoryLocation.UpdateManyCategoryLocationsInput) returns (categoryLocation.CategoryLocations) {}
+  rpc deleteCategoryLocation (common.Id) returns (categoryLocation.CategoryLocation) {}
+  rpc deleteManyCategoryLocations (categoryLocation.DeleteManyCategoryLocationsInput) returns (common.DeleteManyResponse) {}
+
+  // category store
+  rpc categoryStore(common.Id) returns (categoryStore.NullableCategoryStore){}
+  rpc categoryStores(common.Query) returns (categoryStore.CategoryStores){}
+  rpc categoryStoresTotal(common.Query) returns (common.Count){}
+  rpc createCategoryStore (categoryStore.CreateCategoryStoreInput) returns (categoryStore.CategoryStore) {}
+  rpc createManyCategoryStores (categoryStore.CreateManyCategoryStoresInput) returns (categoryStore.CategoryStores) {}
+  rpc updateCategoryStore (categoryStore.UpdateCategoryStoreInput) returns (categoryStore.CategoryStore) {}
+  rpc updateManyCategoryStores (categoryStore.UpdateManyCategoryStoresInput) returns (categoryStore.CategoryStores) {}
+  rpc deleteCategoryStore (common.Id) returns (categoryStore.CategoryStore) {}
+  rpc deleteManyCategoryStores (categoryStore.DeleteManyCategoryStoresInput) returns (common.DeleteManyResponse) {}
+
+  // collection
+  rpc collection(common.Id) returns (collection.NullableCollection){}
+  rpc collections(common.Query) returns (collection.Collections){}
+  rpc collectionsTotal(common.Query) returns (common.Count){}
+  rpc createCollection (collection.CreateCollectionInput) returns (collection.Collection) {}
+  rpc createManyCollections (collection.CreateManyCollectionsInput) returns (collection.Collections) {}
+  rpc updateCollection (collection.UpdateCollectionInput) returns (collection.Collection) {}
+  rpc updateManyCollections (collection.UpdateManyCollectionsInput) returns (collection.Collections) {}
+  rpc deleteCollection (common.Id) returns (collection.Collection) {}
+  rpc deleteManyCollections (collection.DeleteManyCollectionsInput) returns (common.DeleteManyResponse) {}
+
+  // collection location
+  rpc collectionLocation(common.Id) returns (collectionLocation.NullableCollectionLocation){}
+  rpc collectionLocations(common.Query) returns (collectionLocation.CollectionLocations){}
+  rpc collectionLocationsTotal(common.Query) returns (common.Count){}
+  rpc createCollectionLocation (collectionLocation.CreateCollectionLocationInput) returns (collectionLocation.CollectionLocation) {}
+  rpc createManyCollectionLocations (collectionLocation.CreateManyCollectionLocationsInput) returns (collectionLocation.CollectionLocations) {}
+  rpc updateCollectionLocation (collectionLocation.UpdateCollectionLocationInput) returns (collectionLocation.CollectionLocation) {}
+  rpc updateManyCollectionLocations (collectionLocation.UpdateManyCollectionLocationsInput) returns (collectionLocation.CollectionLocations) {}
+  rpc deleteCollectionLocation (common.Id) returns (collectionLocation.CollectionLocation) {}
+  rpc deleteManyCollectionLocations (collectionLocation.DeleteManyCollectionLocationsInput) returns (common.DeleteManyResponse) {}
+
+  // collection store
+  rpc collectionStore(common.Id) returns (collectionStore.NullableCollectionStore){}
+  rpc collectionStores(common.Query) returns (collectionStore.CollectionStores){}
+  rpc collectionStoresTotal(common.Query) returns (common.Count){}
+  rpc createCollectionStore (collectionStore.CreateCollectionStoreInput) returns (collectionStore.CollectionStore) {}
+  rpc createManyCollectionStores (collectionStore.CreateManyCollectionStoresInput) returns (collectionStore.CollectionStores) {}
+  rpc updateCollectionStore (collectionStore.UpdateCollectionStoreInput) returns (collectionStore.CollectionStore) {}
+  rpc updateManyCollectionStores (collectionStore.UpdateManyCollectionStoresInput) returns (collectionStore.CollectionStores) {}
+  rpc deleteCollectionStore (common.Id) returns (collectionStore.CollectionStore) {}
+  rpc deleteManyCollectionStores (collectionStore.DeleteManyCollectionStoresInput) returns (common.DeleteManyResponse) {}
+
+  // manufacturer
+  rpc manufacturer(common.Id) returns (manufacturer.NullableManufacturer){}
+  rpc manufacturers(common.Query) returns (manufacturer.Manufacturers){}
+  rpc manufacturersTotal(common.Query) returns (common.Count){}
+  rpc createManufacturer (manufacturer.CreateManufacturerInput) returns (manufacturer.Manufacturer) {}
+  rpc createManyManufacturers (manufacturer.CreateManyManufacturersInput) returns (manufacturer.Manufacturers) {}
+  rpc updateManufacturer (manufacturer.UpdateManufacturerInput) returns (manufacturer.Manufacturer) {}
+  rpc updateManyManufacturers (manufacturer.UpdateManyManufacturersInput) returns (manufacturer.Manufacturers) {}
+  rpc deleteManufacturer (common.Id) returns (manufacturer.Manufacturer) {}
+  rpc deleteManyManufacturers (manufacturer.DeleteManyManufacturersInput) returns (common.DeleteManyResponse) {}
+
+  // collection location
+  rpc manufacturerLocation(common.Id) returns (manufacturerLocation.NullableManufacturerLocation){}
+  rpc manufacturerLocations(common.Query) returns (manufacturerLocation.ManufacturerLocations){}
+  rpc manufacturerLocationsTotal(common.Query) returns (common.Count){}
+  rpc createManufacturerLocation (manufacturerLocation.CreateManufacturerLocationInput) returns (manufacturerLocation.ManufacturerLocation) {}
+  rpc createManyManufacturerLocations (manufacturerLocation.CreateManyManufacturerLocationsInput) returns (manufacturerLocation.ManufacturerLocations) {}
+  rpc updateManufacturerLocation (manufacturerLocation.UpdateManufacturerLocationInput) returns (manufacturerLocation.ManufacturerLocation) {}
+  rpc updateManyManufacturerLocations (manufacturerLocation.UpdateManyManufacturerLocationsInput) returns (manufacturerLocation.ManufacturerLocations) {}
+  rpc deleteManufacturerLocation (common.Id) returns (manufacturerLocation.ManufacturerLocation) {}
+  rpc deleteManyManufacturerLocations (manufacturerLocation.DeleteManyManufacturerLocationsInput) returns (common.DeleteManyResponse) {}
+
+  // collection store
+  rpc manufacturerStore(common.Id) returns (manufacturerStore.NullableManufacturerStore){}
+  rpc manufacturerStores(common.Query) returns (manufacturerStore.ManufacturerStores){}
+  rpc manufacturerStoresTotal(common.Query) returns (common.Count){}
+  rpc createManufacturerStore (manufacturerStore.CreateManufacturerStoreInput) returns (manufacturerStore.ManufacturerStore) {}
+  rpc createManyManufacturerStores (manufacturerStore.CreateManyManufacturerStoresInput) returns (manufacturerStore.ManufacturerStores) {}
+  rpc updateManufacturerStore (manufacturerStore.UpdateManufacturerStoreInput) returns (manufacturerStore.ManufacturerStore) {}
+  rpc updateManyManufacturerStores (manufacturerStore.UpdateManyManufacturerStoresInput) returns (manufacturerStore.ManufacturerStores) {}
+  rpc deleteManufacturerStore (common.Id) returns (manufacturerStore.ManufacturerStore) {}
+  rpc deleteManyManufacturerStores (manufacturerStore.DeleteManyManufacturerStoresInput) returns (common.DeleteManyResponse) {}
+
+  // product
+  rpc product(common.Id) returns (product.NullableProduct){}
+  rpc products(common.Query) returns (product.Products){}
+  rpc productsTotal(common.Query) returns (common.Count){}
+  rpc createProduct (product.CreateProductInput) returns (product.Product) {}
+  rpc createManyProducts (product.CreateManyProductsInput) returns (product.Products) {}
+  rpc updateProduct (product.UpdateProductInput) returns (product.Product) {}
+  rpc updateManyProducts (product.UpdateManyProductsInput) returns (product.Products) {}
+  rpc deleteProduct (common.Id) returns (product.Product) {}
+  rpc deleteManyProducts (product.DeleteManyProductsInput) returns (common.DeleteManyResponse) {}
+
+  // productImage
+  rpc productImage(common.Id) returns (productImage.NullableProductImage){}
+  rpc productImages(common.Query) returns (productImage.ProductImages){}
+  rpc productImagesTotal(common.Query) returns (common.Count){}
+  rpc createProductImage (productImage.CreateProductImageInput) returns (productImage.ProductImage) {}
+  rpc createManyProductImages (productImage.CreateManyProductImagesInput) returns (productImage.ProductImage) {}
+  rpc updateProductImage (productImage.UpdateProductImageInput) returns (productImage.ProductImage) {}
+  rpc updateManyProductImages (productImage.UpdateManyProductImagesInput) returns (productImage.ProductImages) {}
+  rpc deleteProductImage (common.Id) returns (productImage.ProductImage) {}
+  rpc deleteManyProductImages (productImage.DeleteManyProductImagesInput) returns (common.DeleteManyResponse) {}
+
+  // product attribute
+  rpc productAttribute(common.Id) returns (productAttribute.NullableProductAttribute){}
+  rpc productAttributes(common.Query) returns (productAttribute.ProductAttributes){}
+  rpc productAttributesTotal(common.Query) returns (common.Count){}
+  rpc createProductAttribute (productAttribute.CreateProductAttributeInput) returns (productAttribute.ProductAttribute) {}
+  rpc createManyProductAttributes (productAttribute.CreateManyProductAttributesInput) returns (productAttribute.ProductAttribute) {}
+  rpc updateProductAttribute (productAttribute.UpdateProductAttributeInput) returns (productAttribute.ProductAttribute) {}
+  rpc updateManyProductAttributes (productAttribute.UpdateManyProductAttributesInput) returns (productAttribute.ProductAttributes) {}
+  rpc deleteProductAttribute (common.Id) returns (productAttribute.ProductAttribute) {}
+  rpc deleteManyProductAttributes (productAttribute.DeleteManyProductAttributesInput) returns (common.DeleteManyResponse) {}
+
+  // product category
+  rpc productCategory(common.Id) returns (productCategory.NullableProductCategory){}
+  rpc productCategories(common.Query) returns (productCategory.ProductCategories){}
+  rpc productCategoriesTotal(common.Query) returns (common.Count){}
+  rpc createProductCategory (productCategory.CreateProductCategoryInput) returns (productCategory.ProductCategory) {}
+  rpc createManyProductCategories (productCategory.CreateManyProductCategoriesInput) returns (productCategory.ProductCategory) {}
+  rpc updateProductCategory (productCategory.UpdateProductCategoryInput) returns (productCategory.ProductCategory) {}
+  rpc updateManyProductCategories (productCategory.UpdateManyProductCategoriesInput) returns (productCategory.ProductCategories) {}
+  rpc deleteProductCategory (common.Id) returns (productCategory.ProductCategory) {}
+  rpc deleteManyProductCategories (productCategory.DeleteManyProductCategoriesInput) returns (common.DeleteManyResponse) {}
+
+  // product collection
+  rpc productCollection(common.Id) returns (productCollection.NullableProductCollection){}
+  rpc productCollections(common.Query) returns (productCollection.ProductCollections){}
+  rpc productCollectionsTotal(common.Query) returns (common.Count){}
+  rpc createProductCollection (productCollection.CreateProductCollectionInput) returns (productCollection.ProductCollection) {}
+  rpc createManyProductCollections (productCollection.CreateManyProductCollectionsInput) returns (productCollection.ProductCollection) {}
+  rpc updateProductCollection (productCollection.UpdateProductCollectionInput) returns (productCollection.ProductCollection) {}
+  rpc updateManyProductCollections (productCollection.UpdateManyProductCollectionsInput) returns (productCollection.ProductCollections) {}
+  rpc deleteProductCollection (common.Id) returns (productCollection.ProductCollection) {}
+  rpc deleteManyProductCollections (productCollection.DeleteManyProductCollectionsInput) returns (common.DeleteManyResponse) {}
+
+  // product Location
+  rpc productLocation(common.Id) returns (productLocation.NullableProductLocation){}
+  rpc productLocations(common.Query) returns (productLocation.ProductLocations){}
+  rpc productLocationsTotal(common.Query) returns (common.Count){}
+  rpc createProductLocation (productLocation.CreateProductLocationInput) returns (productLocation.ProductLocation) {}
+  rpc createManyProductLocations (productLocation.CreateManyProductLocationsInput) returns (productLocation.ProductLocation) {}
+  rpc updateProductLocation (productLocation.UpdateProductLocationInput) returns (productLocation.ProductLocation) {}
+  rpc updateManyProductLocations (productLocation.UpdateManyProductLocationsInput) returns (productLocation.ProductLocations) {}
+  rpc deleteProductLocation (common.Id) returns (productLocation.ProductLocation) {}
+  rpc deleteManyProductLocations (productLocation.DeleteManyProductLocationsInput) returns (common.DeleteManyResponse) {}
+
+  // product store
+  rpc productStore(common.Id) returns (productStore.NullableProductStore){}
+  rpc productStores(common.Query) returns (productStore.ProductStores){}
+  rpc productStoresTotal(common.Query) returns (common.Count){}
+  rpc createProductStore (productStore.CreateProductStoreInput) returns (productStore.ProductStore) {}
+  rpc createManyProductStores (productStore.CreateManyProductStoresInput) returns (productStore.ProductStore) {}
+  rpc updateProductStore (productStore.UpdateProductStoreInput) returns (productStore.ProductStore) {}
+  rpc updateManyProductStores (productStore.UpdateManyProductStoresInput) returns (productStore.ProductStores) {}
+  rpc deleteProductStore (common.Id) returns (productStore.ProductStore) {}
+  rpc deleteManyProductStores (productStore.DeleteManyProductStoresInput) returns (common.DeleteManyResponse) {}
+
+  // AttributeOption
+  rpc attributeOption(common.Id) returns (attributeOption.NullableAttributeOption) {}
+  rpc attributeOptions(common.Query) returns (attributeOption.AttributeOptions) {}
+  rpc attributeOptionsTotal(common.Query) returns (common.Count){}
+  rpc createAttributeOption (attributeOption.CreateAttributeOptionInput) returns (attributeOption.AttributeOption) {}
+  rpc createManyAttributeOptions (attributeOption.CreateManyAttributeOptionsInput) returns (attributeOption.AttributeOptions) {}
+  rpc updateAttributeOption (attributeOption.UpdateAttributeOptionInput) returns (attributeOption.AttributeOption) {}
+  rpc updateManyAttributeOptions (attributeOption.UpdateManyAttributeOptionsInput) returns (attributeOption.AttributeOptions) {}
+  rpc deleteAttributeOption (common.Id) returns (attributeOption.AttributeOption) {}
+  rpc deleteManyAttributeOptions (attributeOption.DeleteManyAttributeOptionsInput) returns (common.DeleteManyResponse) {}
+
+  // Attribute
+  rpc attribute(common.Id) returns (attribute.NullableAttribute) {}
+  rpc attributes(common.Query) returns (attribute.Attributes) {}
+  rpc attributesTotal(common.Query) returns (common.Count){}
+  rpc createAttribute (attribute.CreateAttributeInput) returns (attribute.Attribute) {}
+  rpc createManyAttributes (attribute.CreateManyAttributesInput) returns (attribute.Attributes) {}
+  rpc updateAttribute (attribute.UpdateAttributeInput) returns (attribute.Attribute) {}
+  rpc updateManyAttributes (attribute.UpdateManyAttributesInput) returns (attribute.Attributes) {}
+  rpc deleteAttribute (common.Id) returns (attribute.Attribute) {}
+  rpc deleteManyAttributes (attribute.DeleteManyAttributesInput) returns (common.DeleteManyResponse) {}
+
+  // Import Price History
+  rpc importPriceHistory(common.Id) returns (importPriceHistory.NullableImportPriceHistory) {}
+  rpc importPriceHistories(common.Query) returns (importPriceHistory.ImportPriceHistories) {}
+  rpc importPriceHistoriesTotal(common.Query) returns (common.Count){}
+  rpc createImportPriceHistory (importPriceHistory.CreateImportPriceHistoryInput) returns (importPriceHistory.ImportPriceHistory) {}
+  rpc createManyImportPriceHistories (importPriceHistory.CreateManyImportPriceHistoriesInput) returns (importPriceHistory.ImportPriceHistories) {}
+  rpc updateImportPriceHistory (importPriceHistory.UpdateImportPriceHistoryInput) returns (importPriceHistory.ImportPriceHistory) {}
+  rpc updateManyImportPriceHistories (importPriceHistory.UpdateManyImportPriceHistoriesInput) returns (importPriceHistory.ImportPriceHistories) {}
+  rpc deleteImportPriceHistory (common.Id) returns (importPriceHistory.ImportPriceHistory) {}
+  rpc deleteManyImportPriceHistories (importPriceHistory.DeleteManyImportPriceHistoriesInput) returns (common.DeleteManyResponse) {}
+  
+  // ProductVariantPrice
+  rpc productVariantPrice(common.Id) returns (productVariantPrice.NullableProductVariantPrice) {}
+  rpc productVariantPrices(common.Query) returns (productVariantPrice.ProductVariantPrices) {}
+  rpc productVariantPricesTotal(common.Query) returns (common.Count){}
+  rpc createProductVariantPrice (productVariantPrice.CreateProductVariantPriceInput) returns (productVariantPrice.ProductVariantPrice) {}
+  rpc createManyProductVariantPrices (productVariantPrice.CreateManyProductVariantPricesInput) returns (productVariantPrice.ProductVariantPrices) {}
+  rpc updateProductVariantPrice (productVariantPrice.UpdateProductVariantPriceInput) returns (productVariantPrice.ProductVariantPrice) {}
+  rpc updateManyProductVariantPrices (productVariantPrice.UpdateManyProductVariantPricesInput) returns (productVariantPrice.ProductVariantPrices) {}
+  rpc deleteProductVariantPrice (common.Id) returns (productVariantPrice.ProductVariantPrice) {}
+  rpc deleteManyProductVariantPrices (productVariantPrice.DeleteManyProductVariantPricesInput) returns (common.DeleteManyResponse) {}
+
+   // ProductVariantUsageHistory
+  rpc productVariantUsageHistory(common.Id) returns (productVariantUsageHistory.NullableProductVariantUsageHistory) {}
+  rpc productVariantUsageHistories(common.Query) returns (productVariantUsageHistory.ProductVariantUsageHistories) {}
+  rpc productVariantUsageHistoriesTotal(common.Query) returns (common.Count){}
+  rpc createProductVariantUsageHistory (productVariantUsageHistory.CreateProductVariantUsageHistoryInput) returns (productVariantUsageHistory.ProductVariantUsageHistory) {}
+  rpc createManyProductVariantUsageHistories (productVariantUsageHistory.CreateManyProductVariantUsageHistoriesInput) returns (productVariantUsageHistory.ProductVariantUsageHistories) {}
+  rpc updateProductVariantUsageHistory (productVariantUsageHistory.UpdateProductVariantUsageHistoryInput) returns (productVariantUsageHistory.ProductVariantUsageHistory) {}
+  rpc updateManyProductVariantUsageHistories (productVariantUsageHistory.UpdateManyProductVariantUsageHistoriesInput) returns (productVariantUsageHistory.ProductVariantUsageHistories) {}
+  rpc deleteProductVariantUsageHistory (common.Id) returns (productVariantUsageHistory.ProductVariantUsageHistory) {}
+  rpc deleteManyProductVariantUsageHistories (productVariantUsageHistory.DeleteManyProductVariantUsageHistoriesInput) returns (common.DeleteManyResponse) {}
+
+   // ProductVariantAvailability
+  rpc productVariantAvailability(common.Id) returns (productVariantAvailability.NullableProductVariantAvailability) {}
+  rpc productVariantAvailabilities(common.Query) returns (productVariantAvailability.ProductVariantAvailabilities) {}
+  rpc productVariantAvailabilitiesTotal(common.Query) returns (common.Count){}
+  rpc createProductVariantAvailability (productVariantAvailability.CreateProductVariantAvailabilityInput) returns (productVariantAvailability.ProductVariantAvailability) {}
+  rpc createManyProductVariantAvailabilities (productVariantAvailability.CreateManyProductVariantAvailabilitiesInput) returns (productVariantAvailability.ProductVariantAvailabilities) {}
+  rpc updateProductVariantAvailability (productVariantAvailability.UpdateProductVariantAvailabilityInput) returns (productVariantAvailability.ProductVariantAvailability) {}
+  rpc updateManyProductVariantAvailabilities (productVariantAvailability.UpdateManyProductVariantAvailabilitiesInput) returns (productVariantAvailability.ProductVariantAvailabilities) {}
+  rpc deleteProductVariantAvailability (common.Id) returns (productVariantAvailability.ProductVariantAvailability) {}
+  rpc deleteManyProductVariantAvailabilities (productVariantAvailability.DeleteManyProductVariantAvailabilitiesInput) returns (common.DeleteManyResponse) {}
+
+  // ProductVariantAttribute
+  rpc productVariantAttribute(common.Id) returns (productVariantAttribute.NullableProductVariantAttribute) {}
+  rpc productVariantAttributes(common.Query) returns (productVariantAttribute.ProductVariantAttributes) {}
+  rpc productVariantAttributesTotal(common.Query) returns (common.Count){}
+  rpc createProductVariantAttribute (productVariantAttribute.CreateProductVariantAttributeInput) returns (productVariantAttribute.ProductVariantAttribute) {}
+  rpc createManyProductVariantAttributes (productVariantAttribute.CreateManyProductVariantAttributesInput) returns (productVariantAttribute.ProductVariantAttributes) {}
+  rpc updateProductVariantAttribute (productVariantAttribute.UpdateProductVariantAttributeInput) returns (productVariantAttribute.ProductVariantAttribute) {}
+  rpc updateManyProductVariantAttributes (productVariantAttribute.UpdateManyProductVariantAttributesInput) returns (productVariantAttribute.ProductVariantAttributes) {}
+  rpc deleteProductVariantAttribute (common.Id) returns (productVariantAttribute.ProductVariantAttribute) {}
+  rpc deleteManyProductVariantAttributes (productVariantAttribute.DeleteManyProductVariantAttributesInput) returns (common.DeleteManyResponse) {}
+
+  // ProductVariant
+  rpc productVariant(common.Id) returns (productVariant.NullableProductVariant) {}
+  rpc productVariants(common.Query) returns (productVariant.ProductVariants) {}
+  rpc productVariantsTotal(common.Query) returns (common.Count){}
+  rpc createProductVariant (productVariant.CreateProductVariantInput) returns (productVariant.ProductVariant) {}
+  rpc createManyProductVariants (productVariant.CreateManyProductVariantsInput) returns (productVariant.ProductVariants) {}
+  rpc updateProductVariant (productVariant.UpdateProductVariantInput) returns (productVariant.ProductVariant) {}
+  rpc updateManyProductVariants (productVariant.UpdateManyProductVariantsInput) returns (productVariant.ProductVariants) {}
+  rpc deleteProductVariant (common.Id) returns (productVariant.ProductVariant) {}
+  rpc deleteManyProductVariants (productVariant.DeleteManyProductVariantsInput) returns (common.DeleteManyResponse) {}
+
+  // Meta Tag
+  rpc metaTag(common.Id) returns (metaTag.NullableMetaTag) {}
+  rpc metaTags(common.Query) returns (metaTag.MetaTags) {}
+  rpc metaTagsTotal(common.Query) returns (common.Count){}
+  rpc createMetaTag (metaTag.CreateMetaTagInput) returns (metaTag.MetaTag) {}
+  rpc createManyMetaTags (metaTag.CreateManyMetaTagsInput) returns (metaTag.MetaTags) {}
+  rpc updateMetaTag (metaTag.UpdateMetaTagInput) returns (metaTag.MetaTag) {}
+  rpc updateManyMetaTags (metaTag.UpdateManyMetaTagsInput) returns (metaTag.MetaTags) {}
+  rpc deleteMetaTag (common.Id) returns (metaTag.MetaTag) {}
+  rpc deleteManyMetaTags (metaTag.DeleteManyMetaTagsInput) returns (common.DeleteManyResponse) {}
+  // template
+  rpc template(common.Id) returns (template.NullableTemplate){}
+  rpc templates(common.Query) returns (template.Templates){}
+  rpc templatesTotal(common.Query) returns (common.Count){}
+  rpc createTemplate (template.CreateTemplateInput) returns (template.Template) {}
+  rpc createManyTemplates (template.CreateManyTemplatesInput) returns (template.Template) {}
+  rpc updateTemplate (template.UpdateTemplateInput) returns (template.Template) {}
+  rpc updateManyTemplates (template.UpdateManyTemplatesInput) returns (template.Templates) {}
+  rpc deleteTemplate (common.Id) returns (template.Template) {}
+  rpc deleteManyTemplates (template.DeleteManyTemplatesInput) returns (common.DeleteManyResponse) {}
+
+  // Tag
+  rpc tag(common.Id) returns (tag.NullableTag){}
+  rpc tags(common.Query) returns (tag.Tags){}
+  rpc tagsTotal(common.Query) returns (common.Count){}
+  rpc createTag (tag.CreateTagInput) returns (tag.Tag) {}
+  rpc createManyTags (tag.CreateManyTagsInput) returns (tag.Tag) {}
+  rpc updateTag (tag.UpdateTagInput) returns (tag.Tag) {}
+  rpc updateManyTags (tag.UpdateManyTagsInput) returns (tag.Tags) {}
+  rpc deleteTag (common.Id) returns (tag.Tag) {}
+  rpc deleteManyTags (tag.DeleteManyTagsInput) returns (common.DeleteManyResponse) {}
+}
+
+

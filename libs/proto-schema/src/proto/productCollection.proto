@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package io.vg.srv.productCollection;
+
+import 'common.proto';
+import 'google/protobuf/any.proto';
+import "google/protobuf/timestamp.proto";
+import 'google/protobuf/wrappers.proto';
+import 'google/protobuf/struct.proto';
+
+message ProductCollection {
+  // normal field
+  string id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+  google.protobuf.Timestamp deletedAt = 4;
+  google.protobuf.StringValue createdBy = 5;
+  google.protobuf.StringValue updatedBy = 6;
+  google.protobuf.StringValue deletedBy = 7;
+  // reserved field
+  string productId = 8;
+  string collectionId = 9;
+  int32 sortOrder = 10;
+}
+
+message ProductCollections {
+  repeated ProductCollection productCollections = 1;
+}
+
+message ProductCollectionEdge {
+  ProductCollections node = 1;
+  string cursor = 2;
+}
+
+message ProductCollectionConnection {
+  common.PageInfo pageInfo = 1;
+  int32 totalCount = 2;
+  repeated ProductCollectionEdge edges = 3;
+}
+
+message ProductCollectionInput {
+  string productId = 1;
+  string collectionId = 2;
+  int32 sortOrder = 3;
+}
+
+message CreateProductCollectionInput {
+  ProductCollectionInput data = 1;
+}
+
+message CreateManyProductCollectionsInput {
+  repeated ProductCollectionInput ProductCollections = 1;
+}
+
+message UpdateProductCollectionInput {
+  string id = 1;
+  ProductCollectionInput data = 2;
+}
+
+message UpdateManyProductCollectionsInput {
+  google.protobuf.Any filter = 1;
+  ProductCollectionInput update = 2;
+}
+
+message DeleteManyProductCollectionsInput {
+  google.protobuf.Any filter = 1;
+}
+
+message NullableProductCollection {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    ProductCollection data = 2;
+  }
+}

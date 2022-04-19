@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+package io.vg.srv.discount;
+
+import 'common.proto';
+import 'discount.proto';
+import 'discountCategory.proto';
+import 'discountProduct.proto';
+import 'discountManufacturer.proto';
+import 'discountRequirement.proto';
+import 'discountUsageHistory.proto';
+
+service DiscountService {
+  // Discount
+  rpc discount(common.Id) returns (discount.NullableDiscount) {}
+  rpc discounts(common.Query) returns (discount.Discounts) {}
+  rpc discountsTotal(common.Query) returns (common.Count){}
+  rpc createDiscount (discount.CreateDiscountInput) returns (discount.Discount) {}
+  rpc createManyDiscounts (discount.CreateManyDiscountsInput) returns (discount.Discounts) {}
+  rpc updateDiscount (discount.UpdateDiscountInput) returns (discount.Discount) {}
+  rpc updateManyDiscounts (discount.UpdateManyDiscountsInput) returns (discount.Discounts) {}
+  rpc deleteDiscount (common.Id) returns (discount.Discount) {}
+  rpc deleteManyDiscounts (discount.DeleteManyDiscountsInput) returns (common.DeleteManyResponse) {}
+
+  // DiscountCategory
+  rpc discountCategory(common.Id) returns (discountCategory.NullableDiscountCategory) {}
+  rpc discountCategories(common.Query) returns (discountCategory.DiscountCategories) {}
+  rpc discountCategoriesTotal(common.Query) returns (common.Count){}
+  rpc createDiscountCategory (discountCategory.CreateDiscountCategoryInput) returns (discountCategory.DiscountCategory) {}
+  rpc createManyDiscountCategories (discountCategory.CreateManyDiscountCategoriesInput) returns (discountCategory.DiscountCategories) {}
+  rpc updateDiscountCategory (discountCategory.UpdateDiscountCategoryInput) returns (discountCategory.DiscountCategory) {}
+  rpc updateManyDiscountCategories (discountCategory.UpdateManyDiscountCategoriesInput) returns (discountCategory.DiscountCategories) {}
+  rpc deleteDiscountCategory (common.Id) returns (discountCategory.DiscountCategory) {}
+  rpc deleteManyDiscountCategories (discountCategory.DeleteManyDiscountCategoriesInput) returns (common.DeleteManyResponse) {}
+
+  // DiscountProduct
+  rpc discountProduct(common.Id) returns (discountProduct.NullableDiscountProduct) {}
+  rpc discountProducts(common.Query) returns (discountProduct.DiscountProducts) {}
+  rpc discountProductsTotal(common.Query) returns (common.Count){}
+  rpc createDiscountProduct (discountProduct.CreateDiscountProductInput) returns (discountProduct.DiscountProduct) {}
+  rpc createManyDiscountProducts (discountProduct.CreateManyDiscountProductsInput) returns (discountProduct.DiscountProducts) {}
+  rpc updateDiscountProduct (discountProduct.UpdateDiscountProductInput) returns (discountProduct.DiscountProduct) {}
+  rpc updateManyDiscountProducts (discountProduct.UpdateManyDiscountProductsInput) returns (discountProduct.DiscountProducts) {}
+  rpc deleteDiscountProduct (common.Id) returns (discountProduct.DiscountProduct) {}
+  rpc deleteManyDiscountProducts (discountProduct.DeleteManyDiscountProductsInput) returns (common.DeleteManyResponse) {}
+
+  // Discount Manufacturer
+  rpc discountManufacturer(common.Id) returns (discountManufacturer.NullableDiscountManufacturer) {}
+  rpc discountManufacturers(common.Query) returns (discountManufacturer.DiscountManufacturers) {}
+  rpc discountManufacturersTotal(common.Query) returns (common.Count){}
+  rpc createDiscountManufacturer (discountManufacturer.CreateDiscountManufacturerInput) returns (discountManufacturer.DiscountManufacturer) {}
+  rpc createManyDiscountManufacturers (discountManufacturer.CreateManyDiscountManufacturersInput) returns (discountManufacturer.DiscountManufacturers) {}
+  rpc updateDiscountManufacturer (discountManufacturer.UpdateDiscountManufacturerInput) returns (discountManufacturer.DiscountManufacturer) {}
+  rpc updateManyDiscountManufacturers (discountManufacturer.UpdateManyDiscountManufacturersInput) returns (discountManufacturer.DiscountManufacturers) {}
+  rpc deleteDiscountManufacturer (common.Id) returns (discountManufacturer.DiscountManufacturer) {}
+  rpc deleteManyDiscountManufacturers (discountManufacturer.DeleteManyDiscountManufacturersInput) returns (common.DeleteManyResponse) {}
+
+  // Discount Requirement
+  rpc discountRequirement(common.Id) returns (discountRequirement.NullableDiscountRequirement) {}
+  rpc discountRequirements(common.Query) returns (discountRequirement.DiscountRequirements) {}
+  rpc discountRequirementsTotal(common.Query) returns (common.Count){}
+  rpc createDiscountRequirement (discountRequirement.CreateDiscountRequirementInput) returns (discountRequirement.DiscountRequirement) {}
+  rpc createManyDiscountRequirements (discountRequirement.CreateManyDiscountRequirementsInput) returns (discountRequirement.DiscountRequirements) {}
+  rpc updateDiscountRequirement (discountRequirement.UpdateDiscountRequirementInput) returns (discountRequirement.DiscountRequirement) {}
+  rpc updateManyDiscountRequirements (discountRequirement.UpdateManyDiscountRequirementsInput) returns (discountRequirement.DiscountRequirements) {}
+  rpc deleteDiscountRequirement (common.Id) returns (discountRequirement.DiscountRequirement) {}
+  rpc deleteManyDiscountRequirements (discountRequirement.DeleteManyDiscountRequirementsInput) returns (common.DeleteManyResponse) {}
+
+  // DiscountUsageHistory
+  rpc discountUsageHistory(common.Id) returns (discountUsageHistory.NullableDiscountUsageHistory) {}
+  rpc discountUsageHistories(common.Query) returns (discountUsageHistory.DiscountUsageHistories) {}
+  rpc discountUsageHistoriesTotal(common.Query) returns (common.Count){}
+  rpc createDiscountUsageHistory (discountUsageHistory.CreateDiscountUsageHistoryInput) returns (discountUsageHistory.DiscountUsageHistory) {}
+  rpc createManyDiscountUsageHistories (discountUsageHistory.CreateManyDiscountUsageHistoriesInput) returns (discountUsageHistory.DiscountUsageHistories) {}
+  rpc updateDiscountUsageHistory (discountUsageHistory.UpdateDiscountUsageHistoryInput) returns (discountUsageHistory.DiscountUsageHistory) {}
+  rpc updateManyDiscountUsageHistories (discountUsageHistory.UpdateManyDiscountUsageHistoriesInput) returns (discountUsageHistory.DiscountUsageHistories) {}
+  rpc deleteDiscountUsageHistory (common.Id) returns (discountUsageHistory.DiscountUsageHistory) {}
+  rpc deleteManyDiscountUsageHistories (discountUsageHistory.DeleteManyDiscountUsageHistoriesInput) returns (common.DeleteManyResponse) {}
+}

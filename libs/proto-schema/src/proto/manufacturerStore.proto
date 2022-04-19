@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+package io.vg.srv.manufacturerStore;
+
+import 'common.proto';
+import 'google/protobuf/any.proto';
+import "google/protobuf/timestamp.proto";
+import 'google/protobuf/wrappers.proto';
+import 'google/protobuf/struct.proto';
+
+message ManufacturerStore {
+  // normal field
+  string id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+  google.protobuf.Timestamp deletedAt = 4;
+  google.protobuf.StringValue createdBy = 5;
+  google.protobuf.StringValue updatedBy = 6;
+  google.protobuf.StringValue deletedBy = 7;
+  // reserved field
+  string manufacturerId = 8;
+  string storeId = 9;
+}
+
+message ManufacturerStores {
+  repeated ManufacturerStore manufacturerStores = 1;
+}
+
+message ManufacturerStoreEdge {
+  ManufacturerStores node = 1;
+  string cursor = 2;
+}
+
+message ManufacturerStoreConnection {
+  common.PageInfo pageInfo = 1;
+  int32 totalCount = 2;
+  repeated ManufacturerStoreEdge edges = 3;
+}
+
+message ManufacturerStoreInput {
+  string manufacturerId = 1;
+  string storeId = 2;
+}
+
+message CreateManufacturerStoreInput {
+  ManufacturerStoreInput data = 1;
+}
+
+message CreateManyManufacturerStoresInput {
+  repeated ManufacturerStoreInput manufacturerStores = 1;
+}
+
+message UpdateManufacturerStoreInput {
+  string id = 1;
+  ManufacturerStoreInput data = 2;
+}
+
+message UpdateManyManufacturerStoresInput {
+  google.protobuf.Any filter = 1;
+  ManufacturerStoreInput update = 2;
+}
+
+message DeleteManyManufacturerStoresInput {
+  google.protobuf.Any filter = 1;
+}
+
+message NullableManufacturerStore {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    ManufacturerStore data = 2;
+  }
+}

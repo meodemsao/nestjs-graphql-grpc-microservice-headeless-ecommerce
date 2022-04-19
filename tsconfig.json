@@ -1,0 +1,122 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es6",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "allowJs": true,
+    "baseUrl": "./",
+    "incremental": true,
+    "moduleResolution": "node",
+    "skipLibCheck": true,
+    "typeRoots": [
+      "node_modules/@types",
+      "types"
+    ],
+    "paths": {
+      "@vg/common": [
+        "libs/common/src"
+      ],
+      "@vg/common/*": [
+        "libs/common/src/*"
+      ],
+      "@vg/core": [
+        "libs/core/src"
+      ],
+      "@vg/core/*": [
+        "libs/core/src/*"
+      ],
+      "@vg/repository": [
+        "libs/repository/src"
+      ],
+      "@vg/repository/*": [
+        "libs/repository/src/*"
+      ],
+      "@vg/api-gateway": [
+        "apps/api-gateway/src"
+      ],
+      "@vg/api-gateway/*": [
+        "apps/api-gateway/src/*"
+      ],
+      "@vg/proto-schema": [
+        "libs/proto-schema/src"
+      ],
+      "@vg/proto-schema/*": [
+        "libs/proto-schema/src/*"
+      ],
+      "@vg/service-catalog": [
+        "apps/service-catalog/src"
+      ],
+      "@vg/service-catalog/*": [
+        "apps/service-catalog/src/*"
+      ],
+      "@vg/service-cart": [
+        "apps/service-cart/src"
+      ],
+      "@vg/service-cart/*": [
+        "apps/service-cart/src/*"
+      ],
+      "@vg/service-inventory": [
+        "apps/service-inventory/src"
+      ],
+      "@vg/service-inventory/*": [
+        "apps/service-inventory/src/*"
+      ],
+      "@vg/service-discount": [
+        "apps/service-discount/src"
+      ],
+      "@vg/service-discount/*": [
+        "apps/service-discount/src/*"
+      ],
+      "@vg/service-config": [
+        "apps/service-config/src"
+      ],
+      "@vg/service-config/*": [
+        "apps/service-config/src/*"
+      ],
+      "@vg/service-notification": [
+        "apps/service-notification/src"
+      ],
+      "@vg/service-notification/*": [
+        "apps/service-notification/src/*"
+      ],
+      "@vg/service-order": [
+        "apps/service-order/src"
+      ],
+      "@vg/service-order/*": [
+        "apps/service-order/src/*"
+      ],
+      "@vg/event": [
+        "libs/event/src"
+      ],
+      "@vg/event/*": [
+        "libs/event/src/*"
+      ],
+      "@juicycleff/nest-event-store": [
+        "libs/nest-event-store/src"
+      ],
+      "@juicycleff/nest-event-store/*": [
+        "libs/nest-event-store/src/*"
+      ],
+      "@vg/query-graphql": [
+        "libs/query-graphql/src"
+      ],
+      "@vg/query-graphql/*": [
+        "libs/query-graphql/src/*"
+      ]
+    }
+  },
+  "compileOnSave": false
+  // "exclude": [
+  //   "node_modules",
+  //   "coverage",
+  //   "document",
+  //   "dist",
+  //   "backup",
+  //   "**/*.spec.ts"
+  // ]
+}

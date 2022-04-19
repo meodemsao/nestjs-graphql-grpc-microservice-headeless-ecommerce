@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package io.vg.srv.inventory;
+
+import 'common.proto';
+import 'store.proto';
+import 'location.proto';
+
+service InventoryService {
+  // store
+  rpc store(common.Id) returns (store.NullableStore){}
+  rpc stores(common.Query) returns (store.Stores){}
+  rpc storesTotal(common.Query) returns (common.Count){}
+  rpc createStore (store.CreateStoreInput) returns (store.Store) {}
+  rpc createManyStores (store.CreateManyStoresInput) returns (store.Stores) {}
+  rpc updateStore (store.UpdateStoreInput) returns (store.Store) {}
+  rpc updateManyStores (store.UpdateManyStoresInput) returns (store.Stores) {}
+  rpc deleteStore (common.Id) returns (store.Store) {}
+  rpc deleteManyStores (store.DeleteManyStoresInput) returns (common.DeleteManyResponse) {}
+
+  // store
+  rpc location(common.Id) returns (location.NullableLocation){}
+  rpc locations(common.Query) returns (location.Locations){}
+  rpc locationsTotal(common.Query) returns (common.Count){}
+  rpc createLocation (location.CreateLocationInput) returns (location.Location) {}
+  rpc createManyLocations (location.CreateManyLocationsInput) returns (location.Locations) {}
+  rpc updateLocation (location.UpdateLocationInput) returns (location.Location) {}
+  rpc updateManyLocations (location.UpdateManyLocationsInput) returns (location.Locations) {}
+  rpc deleteLocation (common.Id) returns (location.Location) {}
+  rpc deleteManyLocations (location.DeleteManyLocationsInput) returns (common.DeleteManyResponse) {}
+}

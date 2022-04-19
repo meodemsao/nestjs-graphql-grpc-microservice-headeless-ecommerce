@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+package io.vg.srv.template;
+
+import 'common.proto';
+import 'google/protobuf/any.proto';
+import "google/protobuf/timestamp.proto";
+import 'google/protobuf/wrappers.proto';
+import 'google/protobuf/struct.proto';
+
+enum TemplateType {
+  Category = 0;
+  Collection = 1;
+  Manufacturer = 2;
+  Product = 3;
+}
+
+message Template {
+  // normal field
+  string id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+  google.protobuf.Timestamp deletedAt = 4;
+  google.protobuf.StringValue createdBy = 5;
+  google.protobuf.StringValue updatedBy = 6;
+  google.protobuf.StringValue deletedBy = 7;
+  // reserved field
+  string name = 8;
+  string previewImageUrl = 9;
+  TemplateType type = 10;
+  int32 sortOrder = 11;
+}
+
+message Templates {
+  repeated Template templates = 1;
+}
+
+message TemplateEdge {
+  Templates node = 1;
+  string cursor = 2;
+}
+
+message TemplateConnection {
+  common.PageInfo pageInfo = 1;
+  int32 totalCount = 2;
+  repeated TemplateEdge edges = 3;
+}
+
+message TemplateInput {
+  string name = 1;
+  string previewImageUrl = 2;
+  TemplateType type = 3;
+  int32 sortOrder = 4;
+}
+
+message CreateTemplateInput {
+  TemplateInput data = 1;
+}
+
+message CreateManyTemplatesInput {
+  repeated TemplateInput Templates = 1;
+}
+
+message UpdateTemplateInput {
+  string id = 1;
+  TemplateInput data = 2;
+}
+
+message UpdateManyTemplatesInput {
+  google.protobuf.Any filter = 1;
+  TemplateInput update = 2;
+}
+
+message DeleteManyTemplatesInput {
+  google.protobuf.Any filter = 1;
+}
+
+message NullableTemplate {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    Template data = 2;
+  }
+}

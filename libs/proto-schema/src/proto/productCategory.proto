@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package io.vg.srv.productCategory;
+
+import 'common.proto';
+import 'google/protobuf/any.proto';
+import "google/protobuf/timestamp.proto";
+import 'google/protobuf/wrappers.proto';
+import 'google/protobuf/struct.proto';
+
+message ProductCategory {
+  // normal field
+  string id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+  google.protobuf.Timestamp deletedAt = 4;
+  google.protobuf.StringValue createdBy = 5;
+  google.protobuf.StringValue updatedBy = 6;
+  google.protobuf.StringValue deletedBy = 7;
+  // reserved field
+  string productId = 8;
+  string categoryId = 9;
+  int32 sortOrder = 10;
+}
+
+message ProductCategories {
+  repeated ProductCategory productCategories = 1;
+}
+
+message ProductCategoryEdge {
+  ProductCategories node = 1;
+  string cursor = 2;
+}
+
+message ProductCategoryConnection {
+  common.PageInfo pageInfo = 1;
+  int32 totalCount = 2;
+  repeated ProductCategoryEdge edges = 3;
+}
+
+message ProductCategoryInput {
+  string productId = 1;
+  string categoryId = 2;
+  int32 sortOrder = 3;
+}
+
+message CreateProductCategoryInput {
+  ProductCategoryInput data = 1;
+}
+
+message CreateManyProductCategoriesInput {
+  repeated ProductCategoryInput ProductCategories = 1;
+}
+
+message UpdateProductCategoryInput {
+  string id = 1;
+  ProductCategoryInput data = 2;
+}
+
+message UpdateManyProductCategoriesInput {
+  google.protobuf.Any filter = 1;
+  ProductCategoryInput update = 2;
+}
+
+message DeleteManyProductCategoriesInput {
+  google.protobuf.Any filter = 1;
+}
+
+message NullableProductCategory {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    ProductCategory data = 2;
+  }
+}

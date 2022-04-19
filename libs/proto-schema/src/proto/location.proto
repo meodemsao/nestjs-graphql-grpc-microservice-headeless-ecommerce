@@ -1,0 +1,93 @@
+syntax = "proto3";
+
+package io.vg.srv.location;
+
+import 'common.proto';
+import 'google/protobuf/any.proto';
+import "google/protobuf/timestamp.proto";
+import 'google/protobuf/wrappers.proto';
+import 'google/protobuf/struct.proto';
+
+enum LocationStatus {
+  Active = 0;
+  Locked = 1;
+  Deleted = 2;
+}
+
+enum LocationType {
+  Area = 0; 
+  Province = 1; 
+  District = 2;  
+  Ward = 3;
+}
+
+message Location {
+  // normal field
+  string id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+  google.protobuf.Timestamp deletedAt = 4;
+  google.protobuf.StringValue createdBy = 5;
+  google.protobuf.StringValue updatedBy = 6;
+  google.protobuf.StringValue deletedBy = 7;
+  // reserved field
+  string name = 8;
+  string code = 9;
+  int32 sortOrder = 10;
+  string parentId = 11;
+  LocationType type = 12;
+  LocationStatus status = 13;
+}
+
+message Locations {
+  repeated Location locations = 1;
+}
+
+message LocationEdge {
+  Locations node = 1;
+  string cursor = 2;
+}
+
+message LocationConnection {
+  common.PageInfo pageInfo = 1;
+  int32 totalCount = 2;
+  repeated LocationEdge edges = 3;
+}
+
+message LocationInput {
+  string name = 1;
+  string code = 2;
+  int32 sortOrder = 3;
+  string parentId = 4;
+  LocationType type = 5;
+  LocationStatus status = 6;
+}
+
+message CreateLocationInput {
+  LocationInput data = 1;
+}
+
+message CreateManyLocationsInput {
+  repeated LocationInput locations = 1;
+}
+
+message UpdateLocationInput {
+  string id = 1;
+  LocationInput data = 2;
+}
+
+message UpdateManyLocationsInput {
+  google.protobuf.Any filter = 1;
+  LocationInput update = 2;
+}
+
+message DeleteManyLocationsInput {
+  google.protobuf.Any filter = 1;
+}
+
+message NullableLocation {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    Location data = 2;
+  }
+}

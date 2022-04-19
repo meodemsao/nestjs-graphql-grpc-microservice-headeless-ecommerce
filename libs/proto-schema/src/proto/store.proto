@@ -1,0 +1,107 @@
+syntax = "proto3";
+
+package io.vg.srv.store;
+
+import 'common.proto';
+import 'google/protobuf/any.proto';
+import "google/protobuf/timestamp.proto";
+import 'google/protobuf/wrappers.proto';
+import 'google/protobuf/struct.proto';
+
+enum StoreStatus {
+  Active = 0;
+  Locked = 1;
+  Deleted = 2;
+}
+
+enum StoreType {
+  RetailStore = 0;
+  Inventory = 1;
+}
+
+message Store {
+  // normal field
+  string id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+  google.protobuf.Timestamp deletedAt = 4;
+  google.protobuf.StringValue createdBy = 5;
+  google.protobuf.StringValue updatedBy = 6;
+  google.protobuf.StringValue deletedBy = 7;
+  // reserved field
+  string name = 8;
+  string code = 9;
+  string description = 10;
+  string manageBy = 11;
+  string areaId = 12;
+  string provinceId = 13;
+  string districtId = 14;
+  string wardId = 15;
+  string address = 16;
+  string manager = 17;
+  string phoneNumber = 18;
+  string hotline = 19;
+  StoreType type = 20;
+  StoreStatus status = 21;
+}
+
+message Stores {
+  repeated Store stores = 1;
+}
+
+message StoreEdge {
+  Stores node = 1;
+  string cursor = 2;
+}
+
+message StoreConnection {
+  common.PageInfo pageInfo = 1;
+  int32 totalCount = 2;
+  repeated StoreEdge edges = 3;
+}
+
+message StoreInput {
+  string name = 1;
+  string code = 2;
+  string description = 3;
+  string manageBy = 4;
+  string areaId = 5;
+  string provinceId = 6;
+  string districtId = 7;
+  string wardId = 8;
+  string address = 9;
+  string manager = 10;
+  string phoneNumber = 11;
+  string hotline = 12;
+  StoreType type = 13;
+  StoreStatus status = 14;
+}
+
+message CreateStoreInput {
+  StoreInput data = 1;
+}
+
+message CreateManyStoresInput {
+  repeated StoreInput stores = 1;
+}
+
+message UpdateStoreInput {
+  string id = 1;
+  StoreInput data = 2;
+}
+
+message UpdateManyStoresInput {
+  google.protobuf.Any filter = 1;
+  StoreInput update = 2;
+}
+
+message DeleteManyStoresInput {
+  google.protobuf.Any filter = 1;
+}
+
+message NullableStore {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    Store data = 2;
+  }
+}

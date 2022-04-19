@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+package io.vg.srv.discountManufacturer;
+
+import 'common.proto';
+import 'google/protobuf/any.proto';
+import "google/protobuf/timestamp.proto";
+import 'google/protobuf/wrappers.proto';
+import 'google/protobuf/struct.proto';
+
+message DiscountManufacturer {
+  // default field
+  string id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+  google.protobuf.Timestamp deletedAt = 4;
+  google.protobuf.StringValue createdBy = 5;
+  google.protobuf.StringValue updatedBy = 6;
+  google.protobuf.StringValue deletedBy = 7;
+
+  // reserved field 
+  string discountId = 8;
+  string manufacturerId = 9;
+}
+
+message DiscountManufacturers {
+  repeated DiscountManufacturer discountManufacturers = 1;
+}
+
+message DiscountManufacturerEdge {
+  DiscountManufacturers node = 1;
+  string cursor = 2;
+}
+
+message DiscountManufacturerConnection {
+  common.PageInfo pageInfo = 1;
+  int32 totalCount = 2;
+  repeated DiscountManufacturerEdge edges = 3;
+}
+
+message DiscountManufacturerInput {
+  string discountId = 1;
+  string manufacturerId = 2;
+}
+
+message CreateDiscountManufacturerInput {
+  DiscountManufacturerInput data = 1;
+}
+
+message CreateManyDiscountManufacturersInput {
+  repeated DiscountManufacturerInput discountManufacturers = 1;
+}
+
+message UpdateDiscountManufacturerInput {
+  string id = 1;
+  DiscountManufacturerInput data = 2;
+}
+
+message UpdateManyDiscountManufacturersInput {
+  google.protobuf.Any filter = 1;
+  DiscountManufacturerInput update = 2;
+}
+
+message DeleteManyDiscountManufacturersInput {
+  google.protobuf.Any filter = 1;
+}
+
+message NullableDiscountManufacturer {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    DiscountManufacturer data = 2;
+  }
+};

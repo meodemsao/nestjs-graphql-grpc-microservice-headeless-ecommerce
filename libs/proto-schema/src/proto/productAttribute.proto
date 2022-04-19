@@ -1,0 +1,80 @@
+syntax = "proto3";
+
+package io.vg.srv.productAttribute;
+
+import 'common.proto';
+import 'google/protobuf/any.proto';
+import "google/protobuf/timestamp.proto";
+import 'google/protobuf/wrappers.proto';
+import 'google/protobuf/struct.proto';
+
+message ProductAttribute {
+  // normal field
+  string id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+  google.protobuf.Timestamp deletedAt = 4;
+  google.protobuf.StringValue createdBy = 5;
+  google.protobuf.StringValue updatedBy = 6;
+  google.protobuf.StringValue deletedBy = 7;
+  // reserved field
+  string productId = 8;
+  string attributeId = 9;
+  string attributeName = 10;
+  string attributeOptionId = 11;
+  string attributeValue = 12;
+  int32 sortOrder = 13;
+}
+
+message ProductAttributes {
+  repeated ProductAttribute productAttributes = 1;
+}
+
+message ProductAttributeEdge {
+  ProductAttributes node = 1;
+  string cursor = 2;
+}
+
+message ProductAttributeConnection {
+  common.PageInfo pageInfo = 1;
+  int32 totalCount = 2;
+  repeated ProductAttributeEdge edges = 3;
+}
+
+message ProductAttributeInput {
+  string productId = 1;
+  string attributeId = 2;
+  string attributeName = 3;
+  string attributeOptionId = 4;
+  string attributeValue = 5;
+  int32 sortOrder = 6;
+}
+
+message CreateProductAttributeInput {
+  ProductAttributeInput data = 1;
+}
+
+message CreateManyProductAttributesInput {
+  repeated ProductAttributeInput ProductAttributes = 1;
+}
+
+message UpdateProductAttributeInput {
+  string id = 1;
+  ProductAttributeInput data = 2;
+}
+
+message UpdateManyProductAttributesInput {
+  google.protobuf.Any filter = 1;
+  ProductAttributeInput update = 2;
+}
+
+message DeleteManyProductAttributesInput {
+  google.protobuf.Any filter = 1;
+}
+
+message NullableProductAttribute {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    ProductAttribute data = 2;
+  }
+}

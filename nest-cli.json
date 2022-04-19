@@ -1,0 +1,171 @@
+{
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/api-gateway/src",
+  "monorepo": true,
+  "root": "apps/api-gateway",
+  "compilerOptions": {
+    "webpack": false,
+    "tsConfigPath": "apps/api-gateway/tsconfig.app.json",
+    "assets": [
+      {
+        "include": "config/*.yml"
+      },
+      {
+        "include": "**/*.yaml"
+      },
+      {
+        "include": "*.yaml"
+      },
+      {
+        "include": "**/*.conf"
+      },
+      {
+        "include": "*.conf"
+      },
+      {
+        "include": "**/*.proto"
+      },
+      {
+        "include": "*.proto"
+      }
+    ],
+    "watchAssets": true
+  },
+  "projects": {
+    "common": {
+      "type": "library",
+      "root": "libs/common",
+      "entryFile": "index",
+      "sourceRoot": "libs/common/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/common/tsconfig.lib.json"
+      }
+    },
+    "core": {
+      "type": "library",
+      "root": "libs/core",
+      "entryFile": "index",
+      "sourceRoot": "libs/core/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/core/tsconfig.lib.json"
+      }
+    },
+    "proto-schema": {
+      "type": "library",
+      "root": "libs/proto-schema",
+      "entryFile": "index",
+      "sourceRoot": "libs/proto-schema/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/proto-schema/tsconfig.lib.json",
+        "assets": [
+          "**/*.proto"
+        ]
+      }
+    },
+    "event": {
+      "type": "library",
+      "root": "libs/event",
+      "entryFile": "index",
+      "sourceRoot": "libs/event/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/event/tsconfig.lib.json"
+      }
+    },
+    "service-notification": {
+      "type": "application",
+      "root": "apps/service-notification",
+      "entryFile": "main",
+      "sourceRoot": "apps/service-notification/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/service-notification/tsconfig.app.json"
+      }
+    },
+    "nest-event-store": {
+      "type": "library",
+      "root": "libs/nest-event-store",
+      "entryFile": "index",
+      "sourceRoot": "libs/nest-event-store/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/nest-event-store/tsconfig.lib.json"
+      }
+    },
+    "api-gateway": {
+      "type": "application",
+      "root": "apps/api-gateway",
+      "entryFile": "main",
+      "sourceRoot": "apps/api-gateway/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/api-gateway/tsconfig.app.json"
+      }
+    },
+    "service-catalog": {
+      "type": "application",
+      "root": "apps/service-catalog",
+      "entryFile": "main",
+      "sourceRoot": "apps/service-catalog/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/service-catalog/tsconfig.app.json",
+        "assets": [
+          "**/*.yaml"
+        ]
+      }
+    },
+    "service-cart": {
+      "type": "application",
+      "root": "apps/service-cart",
+      "entryFile": "main",
+      "sourceRoot": "apps/service-cart/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/service-cart/tsconfig.app.json",
+        "assets": [
+          "**/*.yaml"
+        ]
+      }
+    },
+    "service-inventory": {
+      "type": "application",
+      "root": "apps/service-inventory",
+      "entryFile": "main",
+      "sourceRoot": "apps/service-inventory/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/service-inventory/tsconfig.app.json",
+        "assets": [
+          "**/*.yaml"
+        ]
+      }
+    },
+    "service-discount": {
+      "type": "application",
+      "root": "apps/service-discount",
+      "entryFile": "main",
+      "sourceRoot": "apps/service-discount/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/service-discount/tsconfig.app.json",
+        "assets": [
+          "**/*.yaml"
+        ]
+      }
+    },
+    "service-config": {
+      "type": "application",
+      "root": "apps/service-config",
+      "entryFile": "main",
+      "sourceRoot": "apps/service-config/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/service-config/tsconfig.app.json",
+        "assets": [
+          "**/*.yaml"
+        ]
+      }
+    },
+    "service-order": {
+      "type": "application",
+      "root": "apps/service-order",
+      "entryFile": "main",
+      "sourceRoot": "apps/service-order/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/service-order/tsconfig.app.json"
+      }
+    }
+  }
+}

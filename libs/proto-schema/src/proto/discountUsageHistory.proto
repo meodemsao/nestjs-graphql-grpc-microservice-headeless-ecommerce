@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package io.vg.srv.discountUsageHistory;
+
+import 'common.proto';
+import 'google/protobuf/any.proto';
+import "google/protobuf/timestamp.proto";
+import 'google/protobuf/wrappers.proto';
+import 'google/protobuf/struct.proto';
+
+
+message DiscountUsageHistory {
+  // default field
+  string id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+  google.protobuf.Timestamp deletedAt = 4;
+  google.protobuf.StringValue createdBy = 5;
+  google.protobuf.StringValue updatedBy = 6;
+  google.protobuf.StringValue deletedBy = 7;
+
+  // reserved field 
+  string discountId = 8;
+  string orderId = 9;
+}
+
+message DiscountUsageHistories {
+  repeated DiscountUsageHistory discountUsageHistories = 1;
+}
+
+message DiscountUsageHistoryEdge {
+  DiscountUsageHistories node = 1;
+  string cursor = 2;
+}
+
+message DiscountUsageHistoryConnection {
+  common.PageInfo pageInfo = 1;
+  int32 totalCount = 2;
+  repeated DiscountUsageHistoryEdge edges = 3;
+}
+
+message DiscountUsageHistoryInput {
+  string discountId = 1;
+  string orderId = 2;
+}
+
+message CreateDiscountUsageHistoryInput {
+  DiscountUsageHistoryInput data = 1;
+}
+
+message CreateManyDiscountUsageHistoriesInput {
+  repeated DiscountUsageHistoryInput discountUsageHistories = 1;
+}
+
+message UpdateDiscountUsageHistoryInput {
+  string id = 1;
+  DiscountUsageHistoryInput data = 2;
+}
+
+message UpdateManyDiscountUsageHistoriesInput {
+  google.protobuf.Any filter = 1;
+  DiscountUsageHistoryInput update = 2;
+}
+
+message DeleteManyDiscountUsageHistoriesInput {
+  google.protobuf.Any filter = 1;
+}
+
+message NullableDiscountUsageHistory {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    DiscountUsageHistory data = 2;
+  }
+}

@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package io.vg.srv.cart;
+
+import 'common.proto';
+import 'order.proto';
+import 'orderItem.proto';
+
+service CartService {
+  // Order
+  rpc order(common.Id) returns (order.NullableOrder) {}
+  rpc orders(common.Query) returns (order.Orders) {}
+  rpc ordersTotal(common.Query) returns (common.Count){}
+  rpc createOrder (order.CreateOrderInput) returns (order.Order) {}
+  rpc createManyOrders (order.CreateManyOrdersInput) returns (order.Orders) {}
+  rpc updateOrder (order.UpdateOrderInput) returns (order.Order) {}
+  rpc updateManyOrders (order.UpdateManyOrdersInput) returns (order.Orders) {}
+  rpc deleteOrder (common.Id) returns (order.Order) {}
+  rpc deleteManyOrders (order.DeleteManyOrdersInput) returns (common.DeleteManyResponse) {}
+
+  // OrderItem
+  rpc orderItem(common.Id) returns (orderItem.NullableOrderItem) {}
+  rpc orderItems(common.Query) returns (orderItem.OrderItems) {}
+  rpc orderItemsTotal(common.Query) returns (common.Count){}
+  rpc createOrderItem (orderItem.CreateOrderItemInput) returns (orderItem.OrderItem) {}
+  rpc createManyOrderItems (orderItem.CreateManyOrderItemsInput) returns (orderItem.OrderItems) {}
+  rpc updateOrderItem (orderItem.UpdateOrderItemInput) returns (orderItem.OrderItem) {}
+  rpc updateManyOrderItems (orderItem.UpdateManyOrderItemsInput) returns (orderItem.OrderItems) {}
+  rpc deleteOrderItem (common.Id) returns (orderItem.OrderItem) {}
+  rpc deleteManyOrderItems (orderItem.DeleteManyOrderItemsInput) returns (common.DeleteManyResponse) {}
+
+}

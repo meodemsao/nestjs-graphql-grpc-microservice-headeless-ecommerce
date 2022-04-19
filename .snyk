@@ -1,0 +1,111 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.22.1
+# ignores vulnerabilities until expiry date; change duration by modifying expiry date
+ignore:
+  SNYK-JS-ANSIREGEX-1583908:
+    - '@godal-inc/grpc-health-check-nestjs > @nestjs/cli > cli-table3 > string-width > strip-ansi > ansi-regex':
+        reason: None given
+        expires: '2021-11-25T03:30:56.182Z'
+  SNYK-JS-AXIOS-1038255:
+    - '@juicycleff/nestjs-event-store > axios':
+        reason: None given
+        expires: '2021-11-25T03:30:56.182Z'
+  SNYK-JS-AXIOS-1579269:
+    - '@juicycleff/nestjs-event-store > axios':
+        reason: None given
+        expires: '2021-11-25T03:30:56.182Z'
+    - '@nestjs/axios > axios':
+        reason: None given
+        expires: '2021-11-25T03:30:56.182Z'
+    - '@godal-inc/grpc-health-check-nestjs > @nestjs/common > axios':
+        reason: None given
+        expires: '2021-11-25T03:30:56.182Z'
+    - '@juicycleff/nestjs-event-store > @nestjs/common > axios':
+        reason: None given
+        expires: '2021-11-25T03:30:56.182Z'
+  SNYK-JS-CLASSVALIDATOR-1730566:
+    - class-validator:
+        reason: None given
+        expires: '2021-11-25T03:30:56.182Z'
+  SNYK-JS-GLOBPARENT-1016905:
+    - rxjs-grpc > jscodeshift > micromatch > parse-glob > glob-base > glob-parent:
+        reason: None given
+        expires: '2021-11-25T03:30:56.182Z'
+  SNYK-JS-LODASH-1018905:
+    - rxjs-grpc > jscodeshift > babel-core > lodash:
+        reason: None given
+        expires: '2021-11-25T03:30:56.182Z'
+    - rxjs-grpc > jscodeshift > babel-core > babel-plugin-proto-to-assign > lodash:
+        reason: None given
+        expires: '2021-11-25T03:30:56.182Z'
+  SNYK-JS-LODASH-1040724:
+    - rxjs-grpc > jscodeshift > babel-core > lodash:
+        reason: None given
+        expires: '2021-11-25T03:30:56.182Z'
+    - rxjs-grpc > jscodeshift > babel-core > babel-plugin-proto-to-assign > lodash:
+        reason: None given
+        expires: '2021-11-25T03:30:56.182Z'
+  SNYK-JS-LODASH-450202:
+    - rxjs-grpc > jscodeshift > babel-core > lodash:
+        reason: None given
+        expires: '2021-11-25T03:30:56.182Z'
+    - rxjs-grpc > jscodeshift > babel-core > babel-plugin-proto-to-assign > lodash:
+        reason: None given
+        expires: '2021-11-25T03:30:56.182Z'
+  SNYK-JS-LODASH-567746:
+    - rxjs-grpc > jscodeshift > babel-core > lodash:
+        reason: None given
+        expires: '2021-11-25T03:30:56.182Z'
+    - rxjs-grpc > jscodeshift > babel-core > babel-plugin-proto-to-assign > lodash:
+        reason: None given
+        expires: '2021-11-25T03:30:56.182Z'
+  SNYK-JS-LODASH-590103:
+    - rxjs-grpc > jscodeshift > babel-core > lodash:
+        reason: None given
+        expires: '2021-11-25T03:30:56.182Z'
+    - rxjs-grpc > jscodeshift > babel-core > babel-plugin-proto-to-assign > lodash:
+        reason: None given
+        expires: '2021-11-25T03:30:56.183Z'
+  SNYK-JS-LODASH-608086:
+    - rxjs-grpc > jscodeshift > babel-core > lodash:
+        reason: None given
+        expires: '2021-11-25T03:30:56.182Z'
+    - rxjs-grpc > jscodeshift > babel-core > babel-plugin-proto-to-assign > lodash:
+        reason: None given
+        expires: '2021-11-25T03:30:56.183Z'
+  SNYK-JS-LODASH-73638:
+    - rxjs-grpc > jscodeshift > babel-core > lodash:
+        reason: None given
+        expires: '2021-11-25T03:30:56.182Z'
+    - rxjs-grpc > jscodeshift > babel-core > babel-plugin-proto-to-assign > lodash:
+        reason: None given
+        expires: '2021-11-25T03:30:56.183Z'
+  SNYK-JS-LODASH-73639:
+    - rxjs-grpc > jscodeshift > babel-core > lodash:
+        reason: None given
+        expires: '2021-11-25T03:30:56.182Z'
+    - rxjs-grpc > jscodeshift > babel-core > babel-plugin-proto-to-assign > lodash:
+        reason: None given
+        expires: '2021-11-25T03:30:56.183Z'
+  SNYK-JS-MINIMATCH-1019388:
+    - rxjs-grpc > jscodeshift > babel-core > minimatch:
+        reason: None given
+        expires: '2021-11-25T03:30:56.183Z'
+  SNYK-JS-UNDERSCORE-1080984:
+    - rxjs-grpc > jscodeshift > nomnom > underscore:
+        reason: None given
+        expires: '2021-11-25T03:30:56.183Z'
+  'npm:braces:20180219':
+    - rxjs-grpc > jscodeshift > micromatch > braces:
+        reason: None given
+        expires: '2021-11-25T03:30:56.183Z'
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:lodash:20180130':
+    - rxjs-grpc > jscodeshift > babel-core > babel-plugin-proto-to-assign > lodash:
+        patched: '2021-10-26T03:29:19.693Z'
+    - rxjs-grpc > jscodeshift > babel-core > lodash:
+        patched: '2021-10-26T03:29:19.693Z'
+  'npm:minimatch:20160620':
+    - rxjs-grpc > jscodeshift > babel-core > minimatch:
+        patched: '2021-10-26T03:29:19.693Z'

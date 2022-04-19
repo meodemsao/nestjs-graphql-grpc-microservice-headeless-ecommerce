@@ -1,0 +1,102 @@
+syntax = "proto3";
+
+package io.vg.srv.importPriceHistory;
+
+import 'common.proto';
+import 'google/protobuf/any.proto';
+import "google/protobuf/timestamp.proto";
+// import 'google/protobuf/wrappers.proto';
+import 'google/protobuf/struct.proto';
+
+enum ImportPriceHistoryPriority {
+  High = 0;
+  Medium = 1;
+  Low = 2;
+}
+
+message ImportPriceHistory {
+  // default field
+  string id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+  google.protobuf.Timestamp deletedAt = 4;
+  string createdBy = 5;
+  string updatedBy = 6;
+  string deletedBy = 7;
+
+  // reserved field 
+  string productVariantId = 8;
+  string locationId = 9;
+  string storeId = 10;
+  string taxCategory = 11;
+  float taxValue = 12;
+  float priceExclTax = 13;
+  float oldPriceExclTax = 14;
+  float priceInclTax = 15;
+  float oldPriceInclTax = 16;
+  float tax = 17;
+  google.protobuf.Timestamp fromDate = 18;
+  google.protobuf.Timestamp toDate = 19;
+  ImportPriceHistoryPriority priority = 20;
+
+}
+
+message ImportPriceHistories {
+  repeated ImportPriceHistory importPriceHistories = 1;
+}
+
+message ImportPriceHistoryEdge {
+  ImportPriceHistories node = 1;
+  string cursor = 2;
+}
+
+message ImportPriceHistoryConnection {
+  common.PageInfo pageInfo = 1;
+  int32 totalCount = 2;
+  repeated ImportPriceHistoryEdge edges = 3;
+}
+
+message ImportPriceHistoryInput {
+  string productVariantId = 1;
+  string locationId = 2;
+  string storeId = 3;
+  string taxCategory = 4;
+  float taxValue = 5;
+  float priceExclTax = 6;
+  float oldPriceExclTax = 7;
+  float priceInclTax = 8;
+  float oldPriceInclTax = 9;
+  float tax = 10;
+  google.protobuf.Timestamp fromDate = 11;
+  google.protobuf.Timestamp toDate = 12;
+  ImportPriceHistoryPriority priority = 13;
+}
+
+message CreateImportPriceHistoryInput {
+  ImportPriceHistoryInput data = 1;
+}
+
+message CreateManyImportPriceHistoriesInput {
+  repeated ImportPriceHistoryInput importPriceHistories = 1;
+}
+
+message UpdateImportPriceHistoryInput {
+  string id = 1;
+  ImportPriceHistoryInput data = 2;
+}
+
+message UpdateManyImportPriceHistoriesInput {
+  google.protobuf.Any filter = 1;
+  ImportPriceHistoryInput update = 2;
+}
+
+message DeleteManyImportPriceHistoriesInput {
+  google.protobuf.Any filter = 1;
+}
+
+message NullableImportPriceHistory {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    ImportPriceHistory data = 2;
+  }
+}

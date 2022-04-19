@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package io.vg.srv.common;
+
+message Id {
+  string id = 1;
+}
+
+message Query {
+  string filter = 1;
+  Paging paging = 2;
+  repeated Sort sorting = 3;
+}
+
+message PageInfo {
+  string startCursor = 1;
+  string endCursor = 2;
+  bool hasNextPage = 3;
+  bool hasPreviousPage = 4;
+}
+
+message Count {
+  int32 totalCount = 1;
+}
+
+message Paging {
+  int32 limit = 1;
+  int32 offset = 2;
+}
+
+message Sort {
+  string field = 1;
+  enum SortDirection {
+    ASC = 0;
+    DESC = 1;
+  }
+  SortDirection  direction = 2;
+  enum SortNulls {
+    NULLS_FIRST = 0;
+    NULLS_LAST = 1;
+  }
+  SortNulls nulls = 3;
+}
+
+message DeleteManyResponse {
+  int32  deletedCount = 1;
+}

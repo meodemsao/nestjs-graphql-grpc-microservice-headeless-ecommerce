@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+package io.vg.srv.collectionStore;
+
+import 'common.proto';
+import 'google/protobuf/any.proto';
+import "google/protobuf/timestamp.proto";
+import 'google/protobuf/wrappers.proto';
+import 'google/protobuf/struct.proto';
+
+message CollectionStore {
+  // normal field
+  string id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+  google.protobuf.Timestamp deletedAt = 4;
+  google.protobuf.StringValue createdBy = 5;
+  google.protobuf.StringValue updatedBy = 6;
+  google.protobuf.StringValue deletedBy = 7;
+  // reserved field
+  string collectionId = 8;
+  string storeId = 9;
+}
+
+message CollectionStores {
+  repeated CollectionStore collectionStores = 1;
+}
+
+message CollectionStoreEdge {
+  CollectionStores node = 1;
+  string cursor = 2;
+}
+
+message CollectionStoreConnection {
+  common.PageInfo pageInfo = 1;
+  int32 totalCount = 2;
+  repeated CollectionStoreEdge edges = 3;
+}
+
+message CollectionStoreInput {
+  string collectionId = 1;
+  string storeId = 2;
+}
+
+message CreateCollectionStoreInput {
+  CollectionStoreInput data = 1;
+}
+
+message CreateManyCollectionStoresInput {
+  repeated CollectionStoreInput collectionStores = 1;
+}
+
+message UpdateCollectionStoreInput {
+  string id = 1;
+  CollectionStoreInput data = 2;
+}
+
+message UpdateManyCollectionStoresInput {
+  google.protobuf.Any filter = 1;
+  CollectionStoreInput update = 2;
+}
+
+message DeleteManyCollectionStoresInput {
+  google.protobuf.Any filter = 1;
+}
+
+message NullableCollectionStore {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    CollectionStore data = 2;
+  }
+}

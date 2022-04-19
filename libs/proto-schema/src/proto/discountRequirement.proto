@@ -1,0 +1,91 @@
+syntax = "proto3";
+
+package io.vg.srv.discountRequirement;
+
+import 'common.proto';
+import 'google/protobuf/any.proto';
+import "google/protobuf/timestamp.proto";
+import 'google/protobuf/wrappers.proto';
+import 'google/protobuf/struct.proto';
+
+enum DiscountRequirementType {
+  TotalPriceAbove = 0;
+  RequireProducts = 1;
+}
+
+enum DiscountRequirementStatus {
+  Active = 0;
+  Locked = 1;
+  Deleted = 2;
+}
+
+message DiscountRequirement {
+  // default field
+  string id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+  google.protobuf.Timestamp deletedAt = 4;
+  google.protobuf.StringValue createdBy = 5;
+  google.protobuf.StringValue updatedBy = 6;
+  google.protobuf.StringValue deletedBy = 7;
+
+  // reserved field 
+  string name = 8;
+  string description = 9;
+  DiscountRequirementType type = 10;
+  DiscountRequirementStatus status = 11;
+  string arguments = 12;
+
+}
+
+message DiscountRequirements {
+  repeated DiscountRequirement discountRequirements = 1;
+}
+
+message DiscountRequirementEdge {
+  DiscountRequirements node = 1;
+  string cursor = 2;
+}
+
+message DiscountRequirementConnection {
+  common.PageInfo pageInfo = 1;
+  int32 totalCount = 2;
+  repeated DiscountRequirementEdge edges = 3;
+}
+
+message DiscountRequirementInput {
+  string name = 1;
+  string description = 2;
+  DiscountRequirementType type = 3;
+  DiscountRequirementStatus status = 4;
+  string arguments = 5;
+}
+
+message CreateDiscountRequirementInput {
+  DiscountRequirementInput data = 1;
+}
+
+message CreateManyDiscountRequirementsInput {
+  repeated DiscountRequirementInput discountRequirements = 1;
+}
+
+message UpdateDiscountRequirementInput {
+  string id = 1;
+  DiscountRequirementInput data = 2;
+}
+
+message UpdateManyDiscountRequirementsInput {
+  google.protobuf.Any filter = 1;
+  DiscountRequirementInput update = 2;
+}
+
+message DeleteManyDiscountRequirementsInput {
+  google.protobuf.Any filter = 1;
+}
+
+message NullableDiscountRequirement {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    DiscountRequirement data = 2;
+  }
+}

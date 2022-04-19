@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+package io.vg.srv.collectionLocation;
+
+import 'common.proto';
+import 'google/protobuf/any.proto';
+import "google/protobuf/timestamp.proto";
+import 'google/protobuf/wrappers.proto';
+import 'google/protobuf/struct.proto';
+
+message CollectionLocation {
+  // normal field
+  string id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+  google.protobuf.Timestamp deletedAt = 4;
+  google.protobuf.StringValue createdBy = 5;
+  google.protobuf.StringValue updatedBy = 6;
+  google.protobuf.StringValue deletedBy = 7;
+  // reserved field
+  string collectionId = 8;
+  string locationId = 9;
+}
+
+message CollectionLocations {
+  repeated CollectionLocation collectionLocations = 1;
+}
+
+message CollectionLocationEdge {
+  CollectionLocations node = 1;
+  string cursor = 2;
+}
+
+message CollectionLocationConnection {
+  common.PageInfo pageInfo = 1;
+  int32 totalCount = 2;
+  repeated CollectionLocationEdge edges = 3;
+}
+
+message CollectionLocationInput {
+  string collectionId = 1;
+  string locationId = 2;
+}
+
+message CreateCollectionLocationInput {
+  CollectionLocationInput data = 1;
+}
+
+message CreateManyCollectionLocationsInput {
+  repeated CollectionLocationInput collectionLocations = 1;
+}
+
+message UpdateCollectionLocationInput {
+  string id = 1;
+  CollectionLocationInput data = 2;
+}
+
+message UpdateManyCollectionLocationsInput {
+  google.protobuf.Any filter = 1;
+  CollectionLocationInput update = 2;
+}
+
+message DeleteManyCollectionLocationsInput {
+  google.protobuf.Any filter = 1;
+}
+
+message NullableCollectionLocation {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    CollectionLocation data = 2;
+  }
+}

@@ -1,0 +1,94 @@
+syntax = "proto3";
+
+package io.vg.srv.attribute;
+
+import 'common.proto';
+import 'google/protobuf/any.proto';
+import "google/protobuf/timestamp.proto";
+import 'google/protobuf/wrappers.proto';
+import 'google/protobuf/struct.proto';
+
+enum AttributeValueType {
+  String = 0;
+  Number = 1;
+  Option = 2;
+}
+
+enum AttributeStatus {
+  Active = 0;
+  Locked = 1;
+  Deleted = 2;
+}
+
+message Attribute {
+  // default field
+  string id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+  google.protobuf.Timestamp deletedAt = 4;
+  google.protobuf.StringValue createdBy = 5;
+  google.protobuf.StringValue updatedBy = 6;
+  google.protobuf.StringValue deletedBy = 7;
+
+  // reserved field 
+  string name = 8;
+  string code = 9;
+  google.protobuf.StringValue description = 10;
+  bool isVariant = 11;
+  AttributeValueType valueType = 12;
+  AttributeStatus status = 13;
+
+}
+
+message Attributes {
+  repeated Attribute attributes = 1;
+}
+
+message AttributeEdge {
+  Attributes node = 1;
+  string cursor = 2;
+}
+
+message AttributeConnection {
+  common.PageInfo pageInfo = 1;
+  int32 totalCount = 2;
+  repeated AttributeEdge edges = 3;
+}
+
+message AttributeInput {
+  string name = 1;
+  string code = 2;
+  google.protobuf.StringValue description = 3;
+  bool isVariant = 4;
+  AttributeValueType valueType = 5;
+  AttributeStatus status = 6;
+}
+
+message CreateAttributeInput {
+  AttributeInput data = 1;
+}
+
+message CreateManyAttributesInput {
+  repeated AttributeInput attributes = 1;
+}
+
+message UpdateAttributeInput {
+  string id = 1;
+  AttributeInput data = 2;
+}
+
+message UpdateManyAttributesInput {
+  google.protobuf.Any filter = 1;
+  AttributeInput update = 2;
+}
+
+message DeleteManyAttributesInput {
+  google.protobuf.Any filter = 1;
+}
+
+message NullableAttribute {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    Attribute data = 2;
+  }
+}

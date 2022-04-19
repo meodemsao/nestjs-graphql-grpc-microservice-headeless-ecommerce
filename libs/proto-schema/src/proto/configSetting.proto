@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+package io.vg.srv.configSetting;
+
+import 'common.proto';
+import 'google/protobuf/any.proto';
+import "google/protobuf/timestamp.proto";
+import 'google/protobuf/wrappers.proto';
+import 'google/protobuf/struct.proto';
+
+enum ConfigSettingStatus {
+  Active = 0;
+  Deleted = 1;
+}
+
+message ConfigSetting {
+  // normal field
+  string id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+  google.protobuf.Timestamp deletedAt = 4;
+  google.protobuf.StringValue createdBy = 5;
+  google.protobuf.StringValue updatedBy = 6;
+  google.protobuf.StringValue deletedBy = 7;
+  // reserved field
+  string name = 8;
+  string alias = 9;
+  string value = 10;
+  int32 sortOrder = 11;
+  ConfigSettingStatus status = 12;
+}
+
+message ConfigSettings {
+  repeated ConfigSetting configSettings = 1;
+}
+
+message ConfigSettingEdge {
+  ConfigSettings node = 1;
+  string cursor = 2;
+}
+
+message ConfigSettingConnection {
+  common.PageInfo pageInfo = 1;
+  int32 totalCount = 2;
+  repeated ConfigSettingEdge edges = 3;
+}
+
+message ConfigSettingInput {
+  string name = 1;
+  string alias = 2;
+  string value = 3;
+  int32 sortOrder = 4;
+  ConfigSettingStatus status = 5;
+}
+
+message CreateConfigSettingInput {
+  ConfigSettingInput data = 1;
+}
+
+message CreateManyConfigSettingsInput {
+  repeated ConfigSettingInput configSettings = 1;
+}
+
+message UpdateConfigSettingInput {
+  string id = 1;
+  ConfigSettingInput data = 2;
+}
+
+message UpdateManyConfigSettingsInput {
+  google.protobuf.Any filter = 1;
+  ConfigSettingInput update = 2;
+}
+
+message DeleteManyConfigSettingsInput {
+  google.protobuf.Any filter = 1;
+}
+
+message NullableConfigSetting {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    ConfigSetting data = 2;
+  }
+}

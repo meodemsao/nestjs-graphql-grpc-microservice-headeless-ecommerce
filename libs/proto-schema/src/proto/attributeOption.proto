@@ -1,0 +1,75 @@
+syntax = "proto3";
+
+package io.vg.srv.attributeOption;
+
+import 'common.proto';
+import 'google/protobuf/any.proto';
+import "google/protobuf/timestamp.proto";
+import 'google/protobuf/wrappers.proto';
+import 'google/protobuf/struct.proto';
+
+message AttributeOption {
+  // default field
+  string id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+  google.protobuf.Timestamp deletedAt = 4;
+  google.protobuf.StringValue createdBy = 5;
+  google.protobuf.StringValue updatedBy = 6;
+  google.protobuf.StringValue deletedBy = 7;
+
+  // reserved field 
+  string attributeId = 8;
+  string value = 9;
+  int32 sortOrder = 10;
+}
+
+message AttributeOptions {
+  repeated AttributeOption attributeOptions = 1;
+}
+
+message AttributeOptionEdge {
+  AttributeOptions node = 1;
+  string cursor = 2;
+}
+
+message AttributeOptionConnection {
+  common.PageInfo pageInfo = 1;
+  int32 totalCount = 2;
+  repeated AttributeOptionEdge edges = 3;
+}
+
+message AttributeOptionInput {
+  string attributeId = 1;
+  string value = 2;
+  int32 sortOrder = 3;
+}
+
+message CreateAttributeOptionInput {
+  AttributeOptionInput data = 1;
+}
+
+message CreateManyAttributeOptionsInput {
+  repeated AttributeOptionInput attributeOptions = 1;
+}
+
+message UpdateAttributeOptionInput {
+  string id = 1;
+  AttributeOptionInput data = 2;
+}
+
+message UpdateManyAttributeOptionsInput {
+  google.protobuf.Any filter = 1;
+  AttributeOptionInput update = 2;
+}
+
+message DeleteManyAttributeOptionsInput {
+  google.protobuf.Any filter = 1;
+}
+
+message NullableAttributeOption {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    AttributeOption data = 2;
+  }
+}

@@ -1,0 +1,93 @@
+syntax = "proto3";
+
+package io.vg.srv.metaTag;
+
+import 'common.proto';
+import 'google/protobuf/any.proto';
+import "google/protobuf/timestamp.proto";
+import 'google/protobuf/wrappers.proto';
+import 'google/protobuf/struct.proto';
+
+enum MetaTagReferenceType {
+  Category = 0;
+  Collection = 1;
+  Manufacturer = 2; 
+  Product = 3;
+}
+enum MetaTagStatus {
+  Active = 0;
+  Locked = 1;
+  Deleted = 2;
+}
+
+message MetaTag {
+  // default field
+  string id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+  google.protobuf.Timestamp deletedAt = 4;
+  google.protobuf.StringValue createdBy = 5;
+  google.protobuf.StringValue updatedBy = 6;
+  google.protobuf.StringValue deletedBy = 7;
+
+  // reserved field 
+  string name = 8;
+  string value = 9;
+  int32 sortOrder = 10;
+  string referenceId = 11;
+  MetaTagReferenceType referenceType = 12;
+  MetaTagStatus status = 13;
+}
+
+message MetaTags {
+  repeated MetaTag metaTags = 1;
+}
+
+message MetaTagEdge {
+  MetaTags node = 1;
+  string cursor = 2;
+}
+
+message MetaTagConnection {
+  common.PageInfo pageInfo = 1;
+  int32 totalCount = 2;
+  repeated MetaTagEdge edges = 3;
+}
+
+message MetaTagInput {
+  string name = 1;
+  string value = 2;
+  int32 sortOrder = 3;
+  string referenceId = 4;
+  MetaTagReferenceType referenceType = 5;
+  MetaTagStatus status = 6;
+}
+
+message CreateMetaTagInput {
+  MetaTagInput data = 1;
+}
+
+message CreateManyMetaTagsInput {
+  repeated MetaTagInput metaTags = 1;
+}
+
+message UpdateMetaTagInput {
+  string id = 1;
+  MetaTagInput data = 2;
+}
+
+message UpdateManyMetaTagsInput {
+  google.protobuf.Any filter = 1;
+  MetaTagInput update = 2;
+}
+
+message DeleteManyMetaTagsInput {
+  google.protobuf.Any filter = 1;
+}
+
+message NullableMetaTag {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    MetaTag data = 2;
+  }
+}

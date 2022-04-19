@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+package io.vg.srv.productVariantAttribute;
+
+import 'common.proto';
+import 'google/protobuf/any.proto';
+import "google/protobuf/timestamp.proto";
+import 'google/protobuf/wrappers.proto';
+import 'google/protobuf/struct.proto';
+
+message ProductVariantAttribute {
+  // default field
+  string id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+  google.protobuf.Timestamp deletedAt = 4;
+  google.protobuf.StringValue createdBy = 5;
+  google.protobuf.StringValue updatedBy = 6;
+  google.protobuf.StringValue deletedBy = 7;
+
+  // reserved field 
+  string productVariantId = 8;
+  string attributeId = 9;
+  string attributeName = 10;
+  string attributeOptionId = 11;
+  string attributeValue = 12;
+  int32 sortOrder = 13;
+}
+
+message ProductVariantAttributes {
+  repeated ProductVariantAttribute productVariantAttributes = 1;
+}
+
+message ProductVariantAttributeEdge {
+  ProductVariantAttributes node = 1;
+  string cursor = 2;
+}
+
+message ProductVariantAttributeConnection {
+  common.PageInfo pageInfo = 1;
+  int32 totalCount = 2;
+  repeated ProductVariantAttributeEdge edges = 3;
+}
+
+message ProductVariantAttributeInput {
+  string productVariantId = 1;
+  string attributeId = 2;
+  string attributeName = 3;
+  string attributeOptionId = 4;
+  string attributeValue = 5;
+  int32 sortOrder = 6;
+}
+
+message CreateProductVariantAttributeInput {
+  ProductVariantAttributeInput data = 1;
+}
+
+message CreateManyProductVariantAttributesInput {
+  repeated ProductVariantAttributeInput productVariantAttributes = 1;
+}
+
+message UpdateProductVariantAttributeInput {
+  string id = 1;
+  ProductVariantAttributeInput data = 2;
+}
+
+message UpdateManyProductVariantAttributesInput {
+  google.protobuf.Any filter = 1;
+  ProductVariantAttributeInput update = 2;
+}
+
+message DeleteManyProductVariantAttributesInput {
+  google.protobuf.Any filter = 1;
+}
+
+message NullableProductVariantAttribute {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    ProductVariantAttribute data = 2;
+  }
+}

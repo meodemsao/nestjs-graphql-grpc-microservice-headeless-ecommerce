@@ -1,0 +1,72 @@
+consul:
+  host: localhost
+  port: 8500
+service:
+  discoveryHost: localhost
+  healthCheck:
+    timeout: 1s
+    interval: 10s
+    tcp: host.docker.internal:${{ service.port }}
+  maxRetry: 5
+  retryInterval: 5000
+  tags: ["v1.0.0", "microservice"]
+  name: io.vg.srv.cart
+  port: 50052
+config:
+  name: ${{ service.name }}-conf
+  namespace: default
+  path: config.yaml
+nats:
+  url: nats://localhost:4222
+redis:
+  host: localhost
+  port: 6379
+  password: ""
+database:
+  type: "mysql"
+  host: localhost
+  port: 3306
+  database_name: "ecommerce_cart"
+  user: "root"
+  password: "vgroup"
+keycloak:
+  authServerUrl: http://localhost:8080/auth
+  realm: SGC
+  clientId: PIM
+  bearOnly: true
+eventstore:
+  poolMax:
+  poolMin:
+  streamProtocol: "http"
+  hostname: "localhost"
+  httpPort: 2113
+  httpPotocol: "http"
+  tcpPassword: "changeit"
+  tcpUsername: "admin"
+  tcpPort: 1113
+  tcpProtocol: tcp
+loadbalance:
+  ruleCls: RandomRule
+logger:
+  level: info
+  transports:
+    - transport: console
+      level: debug
+      colorize: true
+      datePattern: YYYY-MM-DD h:mm:ss
+      label: ${{ service.name }}
+    - transport: file
+      name: info
+      filename: info.log
+      datePattern: YYYY-MM-DD h:mm:ss
+      label: ${{ service.name }}
+      # 100M
+      maxSize: 104857600
+      json: false
+      maxFiles: 10
+    - transport: dailyRotateFile
+      filename: info.log
+      datePattern: YYYY-MM-DD-HH
+      zippedArchive: true
+      maxSize: 20m
+      maxFiles: 14d

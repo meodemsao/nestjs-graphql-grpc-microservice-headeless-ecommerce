@@ -1,0 +1,121 @@
+syntax = "proto3";
+
+package io.vg.srv.productVariant;
+
+import 'common.proto';
+import 'google/protobuf/any.proto';
+import "google/protobuf/timestamp.proto";
+import 'google/protobuf/wrappers.proto';
+import 'google/protobuf/struct.proto';
+
+enum ProductVariantStatus {
+  Active = 0;
+  Locked = 1;
+  Deleted = 2;
+}
+
+message ProductVariant {
+  // default field
+  string id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+  google.protobuf.Timestamp deletedAt = 4;
+  google.protobuf.StringValue createdBy = 5;
+  google.protobuf.StringValue updatedBy = 6;
+  google.protobuf.StringValue deletedBy = 7;
+
+  // reserved field 
+  string productId = 8;
+  string name = 9;
+  string sku = 10;
+  string manufacturerPartNumber = 11;
+  string thubnailUrl = 12;
+  ProductVariantStatus status = 13;
+  bool displayPrice = 14;
+  bool shipable = 15;
+  float weight = 16;
+  float length = 17;
+  float width = 18;
+  float height = 19;
+  string taxCategory = 20;
+  float taxPercent = 21;
+  float priceExclTax = 22;
+  float oldPriceExclTax = 23;
+  float priceInclTax = 24;
+  float oldPriceInclTax = 25;
+  string priceList = 26;
+  string unit = 27;
+  int32 stockAvailability = 28;
+  bool trackInventory = 29;
+  string variantAttributes = 30;
+}
+
+message ProductVariants {
+  repeated ProductVariant productVariants = 1;
+}
+
+message ProductVariantEdge {
+  ProductVariants node = 1;
+  string cursor = 2;
+}
+
+message ProductVariantConnection {
+  common.PageInfo pageInfo = 1;
+  int32 totalCount = 2;
+  repeated ProductVariantEdge edges = 3;
+}
+
+message ProductVariantInput {
+  string productId = 1;
+  string name = 2;
+  string sku = 3;
+  string manufacturerPartNumber = 4;
+  string thubnailUrl = 5;
+  ProductVariantStatus status = 6;
+  bool displayPrice = 7;
+  bool shipable = 8;
+  float weight = 9;
+  float length = 10;
+  float width = 11;
+  float height = 12;
+  string taxCategory = 13;
+  float taxPercent = 14;
+  float priceExclTax = 15;
+  float oldPriceExclTax = 16;
+  float priceInclTax = 17;
+  float oldPriceInclTax = 18;
+  string priceList = 19;
+  string unit = 20;
+  int32 stockAvailability = 21;
+  bool trackInventory = 22;
+  string variantAttributes = 23;
+}
+
+message CreateProductVariantInput {
+  ProductVariantInput data = 1;
+}
+
+message CreateManyProductVariantsInput {
+  repeated ProductVariantInput productVariants = 1;
+}
+
+message UpdateProductVariantInput {
+  string id = 1;
+  ProductVariantInput data = 2;
+}
+
+message UpdateManyProductVariantsInput {
+  google.protobuf.Any filter = 1;
+  ProductVariantInput update = 2;
+}
+
+message DeleteManyProductVariantsInput {
+  google.protobuf.Any filter = 1;
+}
+
+message NullableProductVariant {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    ProductVariant data = 2;
+  }
+}

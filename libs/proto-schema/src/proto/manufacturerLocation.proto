@@ -1,0 +1,72 @@
+syntax = "proto3";
+
+package io.vg.srv.manufacturerLocation;
+
+import 'common.proto';
+import 'google/protobuf/any.proto';
+import "google/protobuf/timestamp.proto";
+import 'google/protobuf/wrappers.proto';
+import 'google/protobuf/struct.proto';
+
+message ManufacturerLocation {
+  // normal field
+  string id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+  google.protobuf.Timestamp deletedAt = 4;
+  google.protobuf.StringValue createdBy = 5;
+  google.protobuf.StringValue updatedBy = 6;
+  google.protobuf.StringValue deletedBy = 7;
+  // reserved field
+  string manufacturerId = 8;
+  string locationId = 9;
+}
+
+message ManufacturerLocations {
+  repeated ManufacturerLocation manufacturerLocations = 1;
+}
+
+message ManufacturerLocationEdge {
+  ManufacturerLocations node = 1;
+  string cursor = 2;
+}
+
+message ManufacturerLocationConnection {
+  common.PageInfo pageInfo = 1;
+  int32 totalCount = 2;
+  repeated ManufacturerLocationEdge edges = 3;
+}
+
+message ManufacturerLocationInput {
+  string manufacturerId = 1;
+  string locationId = 2;
+}
+
+message CreateManufacturerLocationInput {
+  ManufacturerLocationInput data = 1;
+}
+
+message CreateManyManufacturerLocationsInput {
+  repeated ManufacturerLocationInput manufacturerLocations = 1;
+}
+
+message UpdateManufacturerLocationInput {
+  string id = 1;
+  ManufacturerLocationInput data = 2;
+}
+
+message UpdateManyManufacturerLocationsInput {
+  google.protobuf.Any filter = 1;
+  ManufacturerLocationInput update = 2;
+}
+
+message DeleteManyManufacturerLocationsInput {
+  google.protobuf.Any filter = 1;
+}
+
+message NullableManufacturerLocation {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    ManufacturerLocation data = 2;
+  }
+}

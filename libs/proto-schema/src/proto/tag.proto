@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+package io.vg.srv.tag;
+
+import 'common.proto';
+import 'google/protobuf/any.proto';
+import "google/protobuf/timestamp.proto";
+import 'google/protobuf/wrappers.proto';
+import 'google/protobuf/struct.proto';
+
+enum TagStatus {
+  Active = 0;
+  Locked = 1;
+  Deleted = 2;
+}
+
+message Tag {
+  // normal field
+  string id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+  google.protobuf.Timestamp deletedAt = 4;
+  google.protobuf.StringValue createdBy = 5;
+  google.protobuf.StringValue updatedBy = 6;
+  google.protobuf.StringValue deletedBy = 7;
+  // reserved field
+  string name = 8;
+  TagStatus status = 9;
+}
+
+message Tags {
+  repeated Tag Tags = 1;
+}
+
+message TagEdge {
+  Tags node = 1;
+  string cursor = 2;
+}
+
+message TagConnection {
+  common.PageInfo pageInfo = 1;
+  int32 totalCount = 2;
+  repeated TagEdge edges = 3;
+}
+
+message TagInput {
+  string name = 1;
+  TagStatus status = 2;
+}
+
+message CreateTagInput {
+  TagInput data = 1;
+}
+
+message CreateManyTagsInput {
+  repeated TagInput Tags = 1;
+}
+
+message UpdateTagInput {
+  string id = 1;
+  TagInput data = 2;
+}
+
+message UpdateManyTagsInput {
+  google.protobuf.Any filter = 1;
+  TagInput update = 2;
+}
+
+message DeleteManyTagsInput {
+  google.protobuf.Any filter = 1;
+}
+
+message NullableTag {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    Tag data = 2;
+  }
+}

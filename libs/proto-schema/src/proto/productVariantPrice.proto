@@ -1,0 +1,108 @@
+syntax = "proto3";
+
+package io.vg.srv.productVariantPrice;
+
+import 'common.proto';
+import 'google/protobuf/any.proto';
+import "google/protobuf/timestamp.proto";
+import 'google/protobuf/wrappers.proto';
+import 'google/protobuf/struct.proto';
+
+
+enum ProductVariantPricePriority {
+  High = 0;
+  Medium = 1;
+  Low = 2;
+}
+
+enum ProductVariantPriceScope {
+  Order = 0;
+  SyncData = 1;
+}
+
+message ProductVariantPrice {
+  // normal field
+  string id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+  google.protobuf.Timestamp deletedAt = 4;
+  google.protobuf.StringValue createdBy = 5;
+  google.protobuf.StringValue updatedBy = 6;
+  google.protobuf.StringValue deletedBy = 7;
+  // reserved field
+  string productVariantId = 8;
+  string locationId = 9;
+  string storeId = 10;
+  string taxCategory = 11;
+  float taxPercent = 12;
+  float priceExclTax = 13;
+  float oldPriceExclTax = 14;
+  float priceInclTax = 15;
+  float oldPriceInclTax = 16;
+  float tax = 17;
+  google.protobuf.Timestamp fromDate = 18;
+  google.protobuf.Timestamp toDate = 19;
+  ProductVariantPricePriority priority = 20;
+  ProductVariantPriceScope referenceScope = 21;
+}
+
+message ProductVariantPrices {
+  repeated ProductVariantPrice productVariantPrices = 1;
+}
+
+message ProductVariantPriceEdge {
+  ProductVariantPrices node = 1;
+  string cursor = 2;
+}
+
+message ProductVariantPriceConnection {
+  common.PageInfo pageInfo = 1;
+  int32 totalCount = 2;
+  repeated ProductVariantPriceEdge edges = 3;
+}
+
+message ProductVariantPriceInput {
+  string productVariantId = 1;
+  string locationId = 2;
+  string storeId = 3;
+  string taxCategory = 4;
+  float taxPercent = 5;
+  float priceExclTax = 6;
+  float oldPriceExclTax = 7;
+  float priceInclTax = 8;
+  float oldPriceInclTax = 9;
+  float tax = 10;
+  google.protobuf.Timestamp fromDate = 11;
+  google.protobuf.Timestamp toDate = 12;
+  ProductVariantPricePriority priority = 13;
+  ProductVariantPriceScope referenceScope = 14;
+}
+
+message CreateProductVariantPriceInput {
+  ProductVariantPriceInput data = 1;
+}
+
+message CreateManyProductVariantPricesInput {
+  repeated ProductVariantPriceInput productVariantPrices = 1;
+}
+
+message UpdateProductVariantPriceInput {
+  string id = 1;
+  ProductVariantPriceInput data = 2;
+}
+
+message UpdateManyProductVariantPricesInput {
+  google.protobuf.Any filter = 1;
+  ProductVariantPriceInput update = 2;
+}
+
+message DeleteManyProductVariantPricesInput {
+  google.protobuf.Any filter = 1;
+}
+
+message NullableProductVariantPrice {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    ProductVariantPrice data = 2;
+  }
+}

@@ -1,0 +1,75 @@
+syntax = "proto3";
+
+package io.vg.srv.productVariantAvailability;
+
+import 'common.proto';
+import 'google/protobuf/any.proto';
+import "google/protobuf/timestamp.proto";
+import 'google/protobuf/wrappers.proto';
+import 'google/protobuf/struct.proto';
+
+
+message ProductVariantAvailability {
+  // normal field
+  string id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+  google.protobuf.Timestamp deletedAt = 4;
+  google.protobuf.StringValue createdBy = 5;
+  google.protobuf.StringValue updatedBy = 6;
+  google.protobuf.StringValue deletedBy = 7;
+  // reserved field
+  string productVariantId = 8;
+  string storeId = 9;
+  float stockAvailability = 10;
+}
+
+message ProductVariantAvailabilities {
+  repeated ProductVariantAvailability productVariantAvailabilities = 1;
+}
+
+message ProductVariantAvailabilityEdge {
+  ProductVariantAvailabilities node = 1;
+  string cursor = 2;
+}
+
+message ProductVariantAvailabilityConnection {
+  common.PageInfo pageInfo = 1;
+  int32 totalCount = 2;
+  repeated ProductVariantAvailabilityEdge edges = 3;
+}
+
+message ProductVariantAvailabilityInput {
+  string productVariantId = 1;
+  string storeId = 2;
+  float stockAvailability = 3;
+}
+
+message CreateProductVariantAvailabilityInput {
+  ProductVariantAvailabilityInput data = 1;
+}
+
+message CreateManyProductVariantAvailabilitiesInput {
+  repeated ProductVariantAvailabilityInput productVariantAvailabilities = 1;
+}
+
+message UpdateProductVariantAvailabilityInput {
+  string id = 1;
+  ProductVariantAvailabilityInput data = 2;
+}
+
+message UpdateManyProductVariantAvailabilitiesInput {
+  google.protobuf.Any filter = 1;
+  ProductVariantAvailabilityInput update = 2;
+}
+
+message DeleteManyProductVariantAvailabilitiesInput {
+  google.protobuf.Any filter = 1;
+}
+
+message NullableProductVariantAvailability {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    ProductVariantAvailability data = 2;
+  }
+}

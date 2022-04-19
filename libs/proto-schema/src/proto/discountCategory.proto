@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package io.vg.srv.discountCategory;
+
+import 'common.proto';
+import 'google/protobuf/any.proto';
+import "google/protobuf/timestamp.proto";
+import 'google/protobuf/wrappers.proto';
+import 'google/protobuf/struct.proto';
+
+message DiscountCategory {
+  // default field
+  string id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+  google.protobuf.Timestamp deletedAt = 4;
+  google.protobuf.StringValue createdBy = 5;
+  google.protobuf.StringValue updatedBy = 6;
+  google.protobuf.StringValue deletedBy = 7;
+
+  // reserved field 
+  string discountId = 8;
+  string categoryId = 9;
+
+}
+
+message DiscountCategories {
+  repeated DiscountCategory discountCategories = 1;
+}
+
+message DiscountCategoryEdge {
+  DiscountCategories node = 1;
+  string cursor = 2;
+}
+
+message DiscountCategoryConnection {
+  common.PageInfo pageInfo = 1;
+  int32 totalCount = 2;
+  repeated DiscountCategoryEdge edges = 3;
+}
+
+message DiscountCategoryInput {
+  string discountId = 1;
+  string categoryId = 2;
+}
+
+message CreateDiscountCategoryInput {
+  DiscountCategoryInput data = 1;
+}
+
+message CreateManyDiscountCategoriesInput {
+  repeated DiscountCategoryInput discountCategories = 1;
+}
+
+message UpdateDiscountCategoryInput {
+  string id = 1;
+  DiscountCategoryInput data = 2;
+}
+
+message UpdateManyDiscountCategoriesInput {
+  google.protobuf.Any filter = 1;
+  DiscountCategoryInput update = 2;
+}
+
+message DeleteManyDiscountCategoriesInput {
+  google.protobuf.Any filter = 1;
+}
+
+message NullableDiscountCategory {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    DiscountCategory data = 2;
+  }
+}

@@ -1,0 +1,119 @@
+syntax = "proto3";
+
+package io.vg.srv.manufacturer;
+
+import 'common.proto';
+import "google/protobuf/any.proto";
+import "google/protobuf/timestamp.proto";
+import 'google/protobuf/wrappers.proto';
+import 'google/protobuf/struct.proto';
+
+enum ManufacturerStatus {
+  Active = 0;
+  Locked = 1;
+  Deleted = 2;
+}
+
+message Manufacturer {
+  // normal field
+  string id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+  google.protobuf.Timestamp deletedAt = 4;
+  google.protobuf.StringValue createdBy = 5;
+  google.protobuf.StringValue updatedBy = 6;
+  google.protobuf.StringValue deletedBy = 7;
+  // reserved field
+  string name = 8;
+  string slug = 9;
+  google.protobuf.StringValue shortDescription = 10;
+  google.protobuf.StringValue longDescription = 11;
+  google.protobuf.StringValue thumbnailUrl = 12;
+  google.protobuf.StringValue backgroundUrl = 13;
+  google.protobuf.StringValue templateId = 14;
+  int32 sortOrder = 16;
+  google.protobuf.StringValue metaTitle = 17;
+  google.protobuf.StringValue metaDescription = 18;
+  google.protobuf.StringValue metaKeywords = 19;
+  bool allowCustomMetaTag = 20;
+  bool limitedToLocations = 21;
+  bool limitedToStores = 22;
+  int32 pageSize = 24;
+  repeated int32 pageSizeOption = 25;
+  bool allowCustomersToSelectPageSize = 26;
+  bool priceRangeFiltering = 27;
+  bool manuallyPriceRange = 28;
+  float priceFrom = 29;
+  float priceTo = 30;
+  ManufacturerStatus status = 31;
+
+}
+
+message Manufacturers {
+  repeated Manufacturer manufacturers = 1;
+}
+
+message ManufacturerEdge {
+  Manufacturer node = 1;
+  string cursor = 2;
+}
+
+message ManufacturerConnection {
+  common.PageInfo pageInfo = 1;
+  int32 totalCount = 2;
+  repeated ManufacturerEdge edges = 3;
+}
+
+message ManufacturerInput {
+  string name = 1;
+  string slug = 2;
+  google.protobuf.StringValue shortDescription = 3;
+  google.protobuf.StringValue longDescription = 4;
+  google.protobuf.StringValue thumbnailUrl = 5;
+  google.protobuf.StringValue backgroundUrl = 6;
+  google.protobuf.StringValue templateId = 7;
+  int32 sortOrder = 9;
+  google.protobuf.StringValue metaTitle = 10;
+  google.protobuf.StringValue metaDescription = 11;
+  google.protobuf.StringValue metaKeywords = 12;
+  bool allowCustomMetaTag = 13;
+  bool limitedToLocations = 14;
+  bool limitedToStores = 15;
+  int32 pageSize = 17;
+  repeated int32 pageSizeOption = 18;
+  bool allowCustomersToSelectPageSize = 19;
+  bool priceRangeFiltering = 20;
+  bool manuallyPriceRange = 21;
+  float priceFrom = 22;
+  float priceTo = 23;
+  ManufacturerStatus status = 24;
+}
+
+message CreateManufacturerInput {
+  ManufacturerInput data = 1;
+}
+
+message CreateManyManufacturersInput {
+  repeated ManufacturerInput manufacturers = 1;
+}
+
+message UpdateManufacturerInput {
+  string id = 1;
+  ManufacturerInput data = 2;
+}
+
+message UpdateManyManufacturersInput {
+  google.protobuf.Any filter = 1;
+  ManufacturerInput update = 2;
+}
+
+message DeleteManyManufacturersInput {
+  google.protobuf.Any filter = 1;
+}
+
+message NullableManufacturer {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    Manufacturer data = 2;
+  }
+}

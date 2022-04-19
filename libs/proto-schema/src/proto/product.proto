@@ -1,0 +1,141 @@
+syntax = "proto3";
+
+package io.vg.srv.product;
+
+import 'common.proto';
+import 'google/protobuf/any.proto';
+import "google/protobuf/timestamp.proto";
+import 'google/protobuf/wrappers.proto';
+import 'google/protobuf/struct.proto';
+
+enum ProductType {
+  Simple = 0;
+  Variant = 1;
+}
+
+enum ProductStatus {
+  Active = 0;
+  Locked = 1;
+  Deleted = 2;
+}
+
+message Product {
+  // normal field
+  string id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+  google.protobuf.Timestamp deletedAt = 4;
+  google.protobuf.StringValue createdBy = 5;
+  google.protobuf.StringValue updatedBy = 6;
+  google.protobuf.StringValue deletedBy = 7;
+  // reserved field
+  string name = 8;
+  string slug = 9;
+  google.protobuf.StringValue shortDescription = 10;
+  google.protobuf.StringValue longDescription = 11;
+  google.protobuf.StringValue thumbnailUrl = 12;
+  ProductType productType = 13;
+  google.protobuf.StringValue productTemplateId = 14;
+  google.protobuf.StringValue manufacturerId = 15;
+  int32 sortOrder = 16;
+  google.protobuf.StringValue metaTitle = 17;
+  google.protobuf.StringValue metaDescription = 18;
+  google.protobuf.StringValue metaKeywords = 19;
+  google.protobuf.StringValue tags = 20;
+  bool allowCustomMetaTag = 21;
+  bool limitedToLocations = 22;
+  bool limitedToStores = 23;
+  ProductStatus status = 24;
+  bool displayPrice = 25;
+  bool shippable = 26;
+  float weight = 27;
+  float length = 28;
+  float width = 29;
+  float height = 30;
+  string taxCategory = 31;
+  float taxPercent = 32;
+  float priceExclTax = 33;
+  float priceInclTax = 34;
+  string unit = 35;
+  int32 stockAvailability = 36;
+  string attributes = 37;
+  string variantAttributes = 38;
+}
+
+message Products {
+  repeated Product products = 1;
+}
+
+message ProductEdge {
+  Products node = 1;
+  string cursor = 2;
+}
+
+message ProductConnection {
+  common.PageInfo pageInfo = 1;
+  int32 totalCount = 2;
+  repeated ProductEdge edges = 3;
+}
+
+message ProductInput {
+  string name = 8;
+  string slug = 9;
+  string shortDescription = 10;
+  string longDescription = 11;
+  string thumbnailUrl = 12;
+  ProductType productType = 13;
+  string productTemplateId = 14;
+  string manufacturerId = 15;
+  int32 sortOrder = 16;
+  string metaTitle = 17;
+  string metaDescription = 18;
+  string metaKeywords = 19;
+  string tags = 20;
+  bool allowCustomMetaTag = 21;
+  bool limitedToLocations = 22;
+  bool limitedToStores = 23;
+  ProductStatus status = 24;
+  bool displayPrice = 25;
+  bool shippable = 26;
+  float weight = 27;
+  float length = 28;
+  float width = 29;
+  float height = 30;
+  string taxCategory = 31;
+  float taxPercent = 32;
+  float priceExclTax = 33;
+  float priceInclTax = 34;
+  string unit = 35;
+  int32 stockAvailability = 36;
+  string attributes = 37;
+  string variantAttributes = 38;
+}
+
+message CreateProductInput {
+  ProductInput data = 1;
+}
+
+message CreateManyProductsInput {
+  repeated ProductInput Products = 1;
+}
+
+message UpdateProductInput {
+  string id = 1;
+  ProductInput data = 2;
+}
+
+message UpdateManyProductsInput {
+  google.protobuf.Any filter = 1;
+  ProductInput update = 2;
+}
+
+message DeleteManyProductsInput {
+  google.protobuf.Any filter = 1;
+}
+
+message NullableProduct {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    Product data = 2;
+  }
+}

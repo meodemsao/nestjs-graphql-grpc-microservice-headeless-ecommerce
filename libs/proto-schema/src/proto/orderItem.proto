@@ -1,0 +1,88 @@
+syntax = "proto3";
+
+package io.vg.srv.orderItem;
+
+import 'common.proto';
+import 'google/protobuf/any.proto';
+import "google/protobuf/timestamp.proto";
+import 'google/protobuf/wrappers.proto';
+import 'google/protobuf/struct.proto';
+
+message OrderItem {
+  // normal field
+  string id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+  google.protobuf.Timestamp deletedAt = 4;
+  google.protobuf.StringValue createdBy = 5;
+  google.protobuf.StringValue updatedBy = 6;
+  google.protobuf.StringValue deletedBy = 7;
+  // reserved field
+  string productVariantId = 8;
+  string orderId = 9;
+  string displayName = 10;
+  float priceInclTax = 11;
+  float priceExclTax = 12;
+  int32 quantity = 13;
+  float subTotal = 14;
+  float discount = 15;
+  float tax = 16;
+  float total = 17;
+}
+
+message OrderItems {
+  repeated OrderItem orderItems = 1;
+}
+
+message OrderItemEdge {
+  OrderItems node = 1;
+  string cursor = 2;
+}
+
+message OrderItemConnection {
+  common.PageInfo pageInfo = 1;
+  int32 totalCount = 2;
+  repeated OrderItemEdge edges = 3;
+}
+
+message OrderItemInput {
+  string productVariantId = 1;
+  string orderId = 2;
+  string displayName = 3;
+  float priceInclTax = 4;
+  float priceExclTax = 5;
+  int32 quantity = 6;
+  float subTotal = 7;
+  float discount = 8;
+  float tax = 9;
+  float total = 10;
+}
+
+message CreateOrderItemInput {
+  OrderItemInput data = 1;
+}
+
+message CreateManyOrderItemsInput {
+  repeated OrderItemInput orderInputs = 1;
+}
+
+message UpdateOrderItemInput {
+  string id = 1;
+  OrderItemInput data = 2;
+}
+
+message UpdateManyOrderItemsInput {
+  google.protobuf.Any filter = 1;
+  OrderItemInput update = 2;
+}
+
+message DeleteManyOrderItemsInput {
+  google.protobuf.Any filter = 1;
+}
+
+message NullableOrderItem {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    OrderItem data = 2;
+  }
+}

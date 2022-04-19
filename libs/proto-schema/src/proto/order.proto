@@ -1,0 +1,106 @@
+syntax = "proto3";
+
+package io.vg.srv.order;
+
+import 'common.proto';
+import 'google/protobuf/any.proto';
+import "google/protobuf/timestamp.proto";
+import 'google/protobuf/wrappers.proto';
+import 'google/protobuf/struct.proto';
+
+enum OrderStatus {
+  Draf = 0;
+  WaitForConfirmation = 1;
+  ReadyForDelivery = 2;
+  Delivery = 3;
+  Delivered = 4;
+  Canceled = 5;
+}
+
+enum PaymentStatus {
+  Pending = 0;
+  Paid = 1;
+  UnPaid = 2;
+}
+enum ShippingStatus {
+  Delivering = 0;
+}
+
+message Order {
+  // normal field
+  string id = 1;
+  google.protobuf.Timestamp createdAt = 2;
+  google.protobuf.Timestamp updatedAt = 3;
+  google.protobuf.Timestamp deletedAt = 4;
+  google.protobuf.StringValue createdBy = 5;
+  google.protobuf.StringValue updatedBy = 6;
+  google.protobuf.StringValue deletedBy = 7;
+  // reserved field
+  string code = 8;
+  string customerId = 9;
+  float subTotal = 10;
+  float discount = 11;
+  float tax = 12;
+  float total = 13;
+  string note = 14;
+  OrderStatus orderStatus = 15;
+  PaymentStatus paymentStatus = 16;
+  ShippingStatus shippingStatus = 17;
+}
+
+message Orders {
+  repeated Order orders = 1;
+}
+
+message OrderEdge {
+  Orders node = 1;
+  string cursor = 2;
+}
+
+message OrderConnection {
+  common.PageInfo pageInfo = 1;
+  int32 totalCount = 2;
+  repeated OrderEdge edges = 3;
+}
+
+message OrderInput {
+  string code = 1;
+  string customerId = 2;
+  float subTotal = 3;
+  float discount = 4;
+  float tax = 5;
+  float total = 6;
+  string note = 7;
+  OrderStatus orderStatus = 8;
+  PaymentStatus paymentStatus = 9;
+  ShippingStatus shippingStatus = 10;
+}
+
+message CreateOrderInput {
+  OrderInput data = 1;
+}
+
+message CreateManyOrdersInput {
+  repeated OrderInput orders = 1;
+}
+
+message UpdateOrderInput {
+  string id = 1;
+  OrderInput data = 2;
+}
+
+message UpdateManyOrdersInput {
+  google.protobuf.Any filter = 1;
+  OrderInput update = 2;
+}
+
+message DeleteManyOrdersInput {
+  google.protobuf.Any filter = 1;
+}
+
+message NullableOrder {
+  oneof kind {
+    google.protobuf.NullValue null = 1;
+    Order data = 2;
+  }
+}
