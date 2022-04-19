@@ -10,6 +10,7 @@ It has
 - Cqrs partter https://microservices.io/patterns/data/cqrs.html
 - Keycloak authentication https://www.keycloak.org/
 - GRPC https://grpc.io/docs/what-is-grpc/introduction/
+- Nestcloud https://github.com/nest-cloud
 
 # Dev
 
