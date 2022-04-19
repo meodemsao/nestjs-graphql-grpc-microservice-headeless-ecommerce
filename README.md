@@ -109,10 +109,6 @@ $ npm run setup:local
 
 Export impl before handlers
 
-### Database
-
-https://docs.google.com/spreadsheets/d/1IE02omvZEwcwfoIFLvyNZx9LL1MBLom8/edit?usp=sharing&ouid=110428827386710835408&rtpof=true&sd=true
-
 ### How to add a module?
 
 ### With Microservice
