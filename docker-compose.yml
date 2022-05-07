@@ -54,7 +54,7 @@ services:
       DB_ADDR: mysql
       DB_DATABASE: keycloak
       DB_USER: root
-      DB_PASSWORD: vgroup
+      DB_PASSWORD: root
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: admin
       KEYCLOAK_LOGLEVEL: DEBUG
